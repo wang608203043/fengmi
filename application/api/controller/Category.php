@@ -28,7 +28,7 @@ class Category extends BaseController
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getBanner(){
+    public function getList(){
         $list = $this->service->getActiveBanner();
         return CodeResponse::format($list);
     }
