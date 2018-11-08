@@ -60,7 +60,7 @@ class Token
      * @return void
      */
     public function check_token($request){
-        if (Config::get('token.on') !== null){
+        if (Config::get('token.on')){
             $route = $request->module().'/'.$request->controller().'/'.$request->dispatch()['module'][2];
             if (is_array($this->white_space) && !in_array($route,$this->white_space)){
                 try {
