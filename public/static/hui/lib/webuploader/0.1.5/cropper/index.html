@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>WebUploader演示 - 带裁剪功能</title>
+<link rel="stylesheet" type="text/css" href="../webuploader.css" />
+	<link href="../../../../../css/cropper.min.css" rel="stylesheet">
+</head>
+<body>
+
+	<!-- Croper container -->
+	<div class="cropper-wraper" style="width: 300px;height: 300px">
+		<div class="img-container"> <img id="img" src="../../../../temp/200x150.jpg" alt="" /> </div>
+		<button class="upload-btn" id="btn" data-method="getCroppedCanvas" data-option="{ 'width': 160, 'height': 20 }">上传所选区域</button>
+		<div class="img-preview" style="margin-top: 300px"></div>
+	</div>
+
+<!--<div style="margin-top: 300px;width: 300px;height: 300px;"><canvas id="can"   style="border:1px solid #d3d3d3;"></canvas></div>-->
+<script type="text/javascript" src="../../../jquery/1.9.1/jquery.min.js"></script>
+<!--<script type="text/javascript" src="cropper.js"></script>-->
+<script type="text/javascript" src="../../../../../js/cropper.min.js"></script>
+<script type="text/javascript" src="../../../../../js/fullCut.js"></script>
+<script>
+	var options = options = {
+        // strict: false,
+        //responsive: false,
+        //checkImageOrigin: false,
+
+        // modal: false,
+        //guides: true,
+        //highlight: true,
+        // background: false,
+
+        //  autoCrop: false,
+        autoCropArea: 0.5,
+        //dragCrop: false,
+        // movable: false,
+        resizable: false,
+        rotatable: false,
+        // zoomable: false,
+        // touchDragZoom: false,
+        // mouseWheelZoom: false,
+
+        minCanvasWidth: 100,
+        minCanvasHeight: 50,
+        minCropBoxWidth: 160,
+        minCropBoxHeight: 80,
+        minContainerWidth: 160,
+        minContainerHeight: 80,
+
+        //build: null,
+        // built: null,
+        // dragstart: null,
+        // dragmove: null,
+        // dragend: null,
+        // zoomin: null,
+        // zoomout: null,
+
+        aspectRatio: 160/80,
+        preview: '.img-preview',
+        crop: function (data) {
+
+        }
+    };
+	$('#img').on({
+        'build.cropper': function (e) {
+            console.log(e.type);
+        },
+        'built.cropper': function (e) {
+            console.log(e.type);
+        },
+        'dragstart.cropper': function (e) {
+            console.log(e.type, e.dragType);
+        },
+        'dragmove.cropper': function (e) {
+            console.log(e.type, e.dragType);
+        },
+        'dragend.cropper': function (e) {
+            console.log(e.type, e.dragType);
+        },
+        'zoomin.cropper': function (e) {
+            console.log(e.type);
+        },
+        'zoomout.cropper': function (e) {
+            console.log(e.type);
+        }
+    }).cropper(options);
+	// var cut = new Cut({
+     //    image:'#img',
+     //    canvas:'#can',
+     //    cut_btn:'#btn',
+     //    aspectRatio:16/9,
+     //    preview:'.img-preview'
+    // })
+	// cut.init();
+	// $('#img').cropper({
+     //    guides: false,
+     //    autoCropArea: 0.5,
+     //    resizable: false,
+     //    rotatable: false,
+     //    minCropBoxWidth: 100,
+     //    minCropBoxHeight: 50,
+     //    minContainerWidth: 100,
+     //    minContainerHeight: 50,
+     //    aspectRatio: 16 / 9,
+     //    preview: '.img-preview',
+     //    crop: function (data) {
+     //        $dataX.val(Math.round(data.x));
+     //        $dataY.val(Math.round(data.y));
+     //        $dataHeight.val(Math.round(data.height));
+     //        $dataWidth.val(Math.round(data.width));
+     //        $dataRotate.val(Math.round(data.rotate));
+     //    }
+	// })
+</script>
+</body>
+</html>

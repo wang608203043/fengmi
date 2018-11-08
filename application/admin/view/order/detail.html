@@ -1,0 +1,71 @@
+{include file="common/meta"}
+<title>详情</title>
+<style>
+    .pic img{
+        width: 100px;
+        height: 100px;
+    }
+</style>
+</head>
+<body>
+<div class="page-container">
+    <div class="cl pd-5 bg-1 bk-gray mt-20">
+        <table class="table table-border table-bordered table-bg">
+            <thead>
+            <tr>
+                <th scope="col" colspan="20">商品列表</th>
+            </tr>
+            <tr class="text-c">
+                <th width="40">ID</th>
+                <th width="150">图片</th>
+                <th width="150">商品名称</th>
+                <th width="150">规格名称</th>
+                <th width="100">规格属性</th>
+                <th width="100">价格</th>
+                <th width="60">数量</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name="goodsList" id="v"}
+            <tr class="text-c">
+                <td>{$i}</td>
+                <td ><img src="{$v.img_url}" style="height: 50px;"></td>
+                <td >{$v.gname}</td>
+                <td >{$v.stock_name}</td>
+                <td >{$v.attribute}</td>
+                <td >{$v.price}</td>
+                <td >{$v.number}</td>
+            </tr>
+            {/volist}
+            <tr class="text-c"><td>订单备注:</td><td colspan="15">{$remark}</td></tr>
+            </tbody>
+        </table>
+    <table class="table table-border table-bordered table-bg" style="margin-top: 20px">
+        <thead>
+        <tr>
+            <th scope="col" colspan="20">收货人信息</th>
+        </tr>
+        <tr class="text-c">
+            <th width="150">姓名</th>
+            <th width="150">电话</th>
+            <th width="300">地址</th>
+        </tr>
+        </thead>
+        <tbody >
+        <tr class="text-c">
+            <td>{$address.contact_name}</td>
+            <td>{$address.contact_phone}</td>
+            <td>{$address.profile.province.name}{$address.profile.city.name}{$address.profile.area.name}{$address.contact_address}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--_footer 作为公共模版分离出去-->
+{include file="common/footer"}
+<!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

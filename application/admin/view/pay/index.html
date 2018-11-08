@@ -1,0 +1,64 @@
+﻿{include file="common/meta"}
+<title>财务管理</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 财务管理 <span class="c-gray en">&gt;</span> 支付流水 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<form action="{:url('index')}" method="get">
+		<div class="text-c">
+			<input type="text" class="input-text" style="width:250px" placeholder="交易流水号" id="" name="keywords">
+			<button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+		</div>
+	</form>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="r">共有数据：<strong>{$list|count}</strong> 条</span> </div>
+	<table class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+				<th scope="col" colspan="20">列表</th>
+			</tr>
+			<tr class="text-c">
+				<th width="25"><input type="checkbox" name="" value=""></th>
+				<th width="40">ID</th>
+				<th width="100">头像</th>
+				<th width="150">昵称</th>
+				<th width="100">openid</th>
+				<th width="150">订单号</th>
+				<th width="100">支付金额</th>
+				<th width="100">交易流水号</th>
+				<th width="100">支付时间</th>
+				<th width="100">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		{volist name="list" id="v"}
+			<tr class="text-c">
+				<td><input type="checkbox" value="{$v.id}" name="ids"></td>
+				<td>{$i}</td>
+				<td><img src="{$v.user.img_url}" style="height: 50px;border-radius: 50%"></td>
+				<td>{$v.user.nick_name}</td>
+				<td>{$v.user.openid}</td>
+				<td>{$v.goodsOrder.serial}</td>
+				<td>{$v.amount}</td>
+				<th>{$v.serial}</th>
+				<td>{$v.create_time}</td>
+				<td class="td-manage">
+					<a title="删除" href="javascript:;" onclick="dels(this,'{:url(\'del\')}','{$v.id}')" class="ml-15" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+				</td>
+			</tr>
+		{/volist}
+		</tbody>
+	</table>
+	{$list->render()}
+</div>
+<!--_footer 作为公共模版分离出去-->
+{include file="common/footer"}
+<!--/_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__STATIC__/hui/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="__STATIC__/hui/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="__STATIC__/hui/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+    //
+</script>
+</body>
+</html>

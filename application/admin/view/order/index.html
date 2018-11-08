@@ -1,0 +1,116 @@
+﻿{include file="common/meta"}
+<title>订单管理</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 订单管理 <span class="c-gray en">&gt;</span> 商品订单 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<form action="{:url('index')}" method="get">
+		<div class="text-c">
+			<input type="text" class="input-text" style="width:250px" placeholder="订单号" id="" name="keywords">
+			<button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+		</div>
+	</form>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
+		<div class="btn-group">
+					<span class="btn {$status == 0?'btn-primary c-white':'btn-default'} radius"> <a href="{:url('index',['status'=>0])}">待发货</a> </span>
+					<span class="btn {$status == 1?'btn-primary c-white':'btn-default'} radius"><a href="{:url('index',['status'=>1])}">已发货</a></span>
+					<span class="btn {$status == 2?'btn-primary c-white':'btn-default'} radius"><a href="{:url('index',['status'=>2])}">已收货</a></span>
+		</div>
+	</span> <span class="r">共有数据：<strong>{$list|count}</strong> 条</span> </div>
+	<table class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+				<th scope="col" colspan="20">列表</th>
+			</tr>
+			<tr class="text-c">
+				<th width="25"><input type="checkbox" name="" value=""></th>
+				<th width="40">ID</th>
+				<th width="100">订单号</th>
+				<th width="100">收货人</th>
+				<th width="100">收货人电话</th>
+				<th width="100">订单金额</th>
+				<th width="100">下单时间</th>
+				<th width="100">运单号</th>
+				<th width="80">状态</th>
+				<th width="100">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		{volist name="list" id="v"}
+			<tr class="text-c">
+				<td><input type="checkbox" value="{$v.id}" name="ids"></td>
+				<td>{$i}</td>
+				<th>{$v.serial}</th>
+				<td>{$v.address.contact_name}</td>
+				<td>{$v.address.contact_phone}</td>
+				<td>{$v.amount}</td>
+				<td>{$v.create_time}</td>
+				<td id="table_track">{$v.track_no}</td>
+				<td class="td-status">
+					<span class="label {$v.status==1?'label-success':'label-defaunt'} radius">
+						{switch name="$v.status"}
+							{case value="0"}待发货{/case}
+							{case value="1"}已发货{/case}
+							{case value="2"}已收货{/case}
+						{/switch}
+					</span>
+				</td>
+				<td class="td-manage">
+					<a title="详情" href="javascript:;" onclick="layerFull('订单详情','{:url(\'detail\',[\'order_id\'=>$v.id])}')" class="ml-15" style="text-decoration:none"><i class="Hui-iconfont">&#xe725;</i>详情</a>
+					{if $v.status == 0}<a title="发货" href="javascript:;" onclick="modify('{$v.id}')" class="ml-15" style="text-decoration:none"><i class="Hui-iconfont">&#xe669;</i>发货</a>{/if}
+					<a title="删除" href="javascript:;" onclick="dels(this,'{:url(\'del\')}','{$v.id}')" class="ml-15" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i>删除</a>
+				</td>
+			</tr>
+		{/volist}
+		</tbody>
+	</table>
+	{$list->render()}
+</div>
+<div id="modify" style="display: none;text-align: center;margin-top: 10%;">
+	<input type="text" class="input-text" style="width: 300px" value="" placeholder="请填写快递运单号" id="track_no" name="track_no">
+	<br>
+	<input class="btn btn-primary radius" style="margin-top: 20px" type="button" onclick="track_commit()" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+</div>
+<!--_footer 作为公共模版分离出去-->
+{include file="common/footer"}
+<!--/_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__STATIC__/hui/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="__STATIC__/hui/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="__STATIC__/hui/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+	var order_id,index;
+    function modify(id){
+       	order_id = id;
+		index = layer.open({
+			type: 1,
+			area: ['400px','200px'],
+			fix: false, //不固定
+			maxmin: true,
+			shade:0.4,
+			title: '填写运单号',
+			content: $('#modify')
+		});
+    }
+    function track_commit() {
+        var track_no = $('#track_no').val();
+        if (!track_no){
+            layer.msg('请填写运单号',{icon:2,time:1000});
+			return false;
+		}else {
+            $.post("{:url('send')}",{order_id:order_id,track_no:track_no},function (res) {
+                if (res.code === 10000){
+                    layer.close(index);
+                    layer.msg('操作成功!',{icon:1,time:1000});
+                    setTimeout(function () {
+                        location.reload();
+                    },1000)
+				}else {
+                    layer.msg(res.message,{icon:2,time:1000});
+				}
+            });
+		}
+    }
+</script>
+</body>
+</html>

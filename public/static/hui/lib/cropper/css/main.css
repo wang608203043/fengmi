@@ -1,0 +1,51 @@
+.img-pick {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    background: #3bb4f2;
+    padding: 4px 12px;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.speed_box {
+    width: 300px;
+    height: 10px;
+    display: none;
+    border: 1px solid #0091f2;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.speed_box1 {
+    width: 300px;
+    height: 10px;
+    display: none;
+    border: 1px solid #0091f2;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.file_info {
+    width: 500px;
+    height: 30px;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.img-preview-container{
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    width: 170px;
+    overflow: hidden;
+}
+
+.canvas-container{
+    position: absolute;
+    right: 5px;
+    width: 170px;
+    display: none;
+}
