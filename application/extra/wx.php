@@ -7,8 +7,8 @@
  */
 
 return [
-    'app_id'=>'wx1f2cfbf6df90874c',
-    'app_secret'=>'85a11452f30e2f7d5f0bcd735e8869ac',
+    'app_id'=>'wx9bdb7583639306e1',
+    'app_secret'=>'0fcfc690eb838024907cda27b99ff63b',
     'key'=>'2b2906e6a31467d803a97b3aa21ddc0a',
     'app_mchid'=>'1517678931',
     'notify_url'=>'http://qingmu.xcxcyy.com/api/order/notify',

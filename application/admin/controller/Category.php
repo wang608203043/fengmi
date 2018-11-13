@@ -67,7 +67,7 @@ class Category extends BaseController
         if (Str::contains($data['img_url'],'base64')){
             $data['img_url'] = base64_image_content($data['img_url'],UPLOAD_PATH);
         }
-        $res = (new \app\common\model\Category())->saveOrUpdate($id,$data);
+        $res = $this->service->baseSave($id,$data);
         return $res ? CodeResponse::format() : CodeResponse::fail();
     }
 
