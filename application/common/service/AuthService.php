@@ -134,4 +134,8 @@ class AuthService extends BaseService
         }
         return $list;
     }
+
+    public function createUser($auth_id){
+        return $this->model->user()->save(['auth_id'=>$auth_id]);
+    }
 }

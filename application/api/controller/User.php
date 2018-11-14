@@ -41,6 +41,7 @@ class User extends BaseController
                 $cache['uid'] = $user->id;
             }else{
                 $uid = $this->service->baseSave(null,['openid'=>$res['openid']]);
+                $this->service->createUser($uid);
                 $cache['uid'] = $uid;
             }
             $cache_key = crypt($res['session_key'].uniqid(),self::SESSION_SALT);
