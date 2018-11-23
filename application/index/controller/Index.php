@@ -11,7 +11,7 @@ class Index
     }
 
     public function test(){
-        Cache::set('test','hello cache');
+        Cache::init()->lpush('test','hello list');
         return Cache::get('test');
     }
 }
