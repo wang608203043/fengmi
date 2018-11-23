@@ -56,6 +56,12 @@ class Order extends BaseController
         return CodeResponse::format(['data'=>$data,'key'=>$cache_key]);
     }
 
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function prePay(){
         $key = input('key');
         $address_id = input('address_id');

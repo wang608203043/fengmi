@@ -45,7 +45,7 @@
 				<td class="td-status">
 					<span class="label {$v.is_down==0?'label-success':'label-defaunt'} radius">{$v.is_down==0?'已上架':'已下架'}</span>
 				</td>
-				<td class="td-manage"><a title="添加规格" href="{:url('goods_stock/index',['id'=>$v.id])}" class="ml-15" style="text-decoration:none"><i class="Hui-iconfont">&#xe604;</i>添加规格</a></td>
+				<td><a title="添加规格" href="{:url('goods_stock/index',['id'=>$v.id])}" class="ml-15" style="text-decoration:none"><i class="Hui-iconfont">&#xe604;</i>添加规格</a></td>
 				<td class="td-manage"><a style="text-decoration:none" onClick="{$v.is_down==0?'stop':'start'}(this,'{$v.id}','{$v.is_down}','下架','上架','{:url(\'changeIsDown\')}')" href="javascript:;" title="{$v.is_down==1?'上架':'下架'}"><i class="Hui-iconfont">&#xe631;</i></a> <a title="编辑" href="javascript:;" onclick="layerFull('编辑','{:url(\'edit\',[\'id\'=>$v.id])}')" class="ml-15" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="dels(this,'{:url(\'del\')}','{$v.id}')" class="ml-15" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
 		{/volist}

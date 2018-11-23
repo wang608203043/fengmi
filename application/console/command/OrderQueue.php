@@ -126,6 +126,7 @@ class OrderQueue extends Command
                         unset($cache);unset($order_goods);unset($user);unset($stock);
                         unset($score);unset($data);unset($datum);unset($address);
                         $conn->free();$conn->close();
+                        echo 'memory_max: '.memory_get_peak_usage().'B'."\n";
                     }
                 }
             }catch (\Exception $e) {
