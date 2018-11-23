@@ -4,12 +4,12 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户管理 <span class="c-gray en">&gt;</span> 用户列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<form action="{:url('index')}" method="get">
-		<div class="text-c">
-			<input type="text" class="input-text" style="width:250px" placeholder="输入姓名,手机号" id="" name="keywords">
-			<button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
-		</div>
-	</form>
+	<!--<form action="{:url('index')}" method="get">-->
+		<!--<div class="text-c">-->
+			<!--<input type="text" class="input-text" style="width:250px" placeholder="输入姓名,手机号" id="" name="keywords">-->
+			<!--<button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>-->
+		<!--</div>-->
+	<!--</form>-->
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		 <span class="r">共有数据：<strong>{$list|count}</strong> 条</span> </div>
 	<table class="table table-border table-bordered table-bg">
@@ -23,9 +23,12 @@
 				<th width="100">头像</th>
 				<th width="150">昵称</th>
 				<th width="100">openid</th>
-				<th width="150">消费金额</th>
+				<th width="60">可用积分</th>
+				<th width="60">总积分</th>
+				<th width="60">消费金额</th>
 				<th width="50">消费次数</th>
-				<th width="150">加入时间</th>
+				<th width="100">加入时间</th>
+				<th width="50">操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -33,37 +36,97 @@
 			<tr class="text-c">
 				<td><input type="checkbox" value="{$v.id}" name="ids"></td>
 				<td>{$i}</td>
-				<td><img src="{$v.img_url}" style="height: 50px;border-radius: 50%"></td>
+				<td><img src="{$v.img_url}" style="height: 30px;border-radius: 50%"></td>
 				<td>{$v.nick_name}</td>
 				<td>{$v.openid}</td>
+				<td>{$v.user.score}</td>
+				<td>{$v.user.score_total}</td>
 				<td>{$v.user.consume_amount}</td>
 				<td>{$v.user.consume_count}</td>
 				<td>{$v.create_time}</td>
+				<td class="td-manage"><a title="编辑" href="javascript:;" onclick="modify('{$v.id}')" class="ml-15" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>修改积分</a></td>
 			</tr>
 		{/volist}
 		</tbody>
 	</table>
 	{$list->render()}
 </div>
+<div id="modify" style="display: none;text-align: center;margin-top: 5%;margin-left: 5%;overflow: hidden">
+	<form action="" id="apply">
+		<div class="row cl" style="width: 90%">
+			<label class="form-label col-xs-4 col-sm-3">积分数：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="number" class="input-text" value="" name="integral" style="width: 100%">
+			</div>
+		</div>
+		<div class="row cl mt-35" style="width: 90%">
+			<label class="form-label col-xs-4 col-sm-3">类型：</label>
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+				<div class="radio-box"  style="margin-left: -55%;">
+					<input name="type" value="1" type="radio" id="genre-1" checked>
+					<label for="genre-1">增加</label>
+				</div>
+				<div class="radio-box">
+					<input type="radio" id="genre-2" name="type" value="2">
+					<label for="genre-2">减少</label>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" name="auth_id" id="id">
+		<div class="row">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2" style="margin-top: 20px;margin-left: -50px">
+				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</div>
 <!--_footer 作为公共模版分离出去-->
 {include file="common/footer"}
 <!--/_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__STATIC__/hui/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="__STATIC__/hui/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="__STATIC__/hui/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript">
-    function start(obj,id,url){
-        layer.confirm('确认要激活吗？',function(index){
-            $.post(url,{id:id},function (res) {
-                if (res.code === 10000){
-                    $(obj).parents("tr").find(".td-manage").html('');
-                    $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">会员</span>');
-                    $(obj).remove();
-                    layer.msg('已激活!',{icon: 6,time:1000});
-                }else {
-                    layer.msg(res.message,{icon: 2,time:1000});
-                }
-            })
+    function modify(id){
+        $('#id').val(id);
+        index = layer.open({
+            type: 1,
+            area: ['500px','250px'],
+            fix: false, //不固定
+            maxmin: true,
+            shade:0.4,
+            title: '修改积分',
+            content: $('#modify')
         });
     }
+    $("#apply").validate({
+        rules: {
+        },
+        onkeyup: false,
+        focusCleanup: true,
+        success: "valid",
+        submitHandler: function (form) {
+            $(form).ajaxSubmit({
+                type: 'post',
+                url: "{:url('change')}",
+                success: function (res) {
+                    if (res.code === 10000) {
+                        layer.msg('操作成功', {icon: 1, time: 1000});
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000)
+                    } else {
+                        layer.msg(res.message, {icon: 2, time: 1000});
+                    }
+                },
+                error: function (XmlHttpRequest, textStatus, errorThrown) {
+                    console.log(textStatus,errorThrown);
+                    layer.msg(errorThrown, {icon: 2, time: 1000});
+                }
+            });
+        }
+    });
 </script>
 </body>
 </html>

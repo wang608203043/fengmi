@@ -10,6 +10,7 @@
 namespace app\common\service;
 
 
+use app\common\component\CodeResponse;
 use app\common\model\Auth;
 use app\common\model\BaseModel;
 use app\common\model\District;
@@ -135,7 +136,43 @@ class AuthService extends BaseService
         return $list;
     }
 
-    public function createUser($auth_id){
-        return $this->model->user()->save(['auth_id'=>$auth_id]);
+    public function createUser($auth_id,$parent_id){
+        return $this->model->user()->save(['auth_id'=>$auth_id,'parent_id'=>$parent_id]);
+    }
+
+    /**
+     * @param $auth_id
+     * @return array|false|\PDOStatement|string|\think\Model
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getUserExtend($auth_id){
+        return $this->model->user()->where('auth_id',$auth_id)->find();
+    }
+
+    /**
+     * @param $auth_id
+     * @param $integral
+     * @param $type
+     * @return false|int
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function changeIntegral($auth_id, $integral, $type)
+    {
+        $user = $this->model->user()->where('auth_id',$auth_id)->find();
+        if ($type == 1){
+            $user->score += $integral;
+            $user->score_total += $integral;
+        }else{
+            if ($user->score < $integral){
+                CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR,null,'用户可用积分少于'.$integral.',操作失败');
+            }
+            $user->score -= $integral;
+            $user->score_total -= $integral;
+        }
+        return $user->save();
     }
 }

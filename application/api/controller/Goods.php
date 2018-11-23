@@ -12,6 +12,7 @@ namespace app\api\controller;
 
 use app\common\component\CodeResponse;
 use app\common\service\GoodsService;
+use think\Cache;
 use think\Request;
 
 class Goods extends BaseController
@@ -28,7 +29,8 @@ class Goods extends BaseController
      * @throws \think\exception\DbException
      */
     public function getRecommendList(){
-        $list = $this->service->getByRecommend();
+        $openid = $this->getOpenid();
+        $list = $this->service->getByRecommend($openid);
         return CodeResponse::format($list);
     }
 
@@ -42,7 +44,8 @@ class Goods extends BaseController
     public function getCategoryList(){
         $page = input('page',1);
         $category_id = input('category_id');
-        $list = $this->service->getByCategory($page, 15, ['category_id'=>$category_id]);
+        $openid = $this->getOpenid();
+        $list = $this->service->getByCategory($openid,$page, 15, ['category_id'=>$category_id]);
         return CodeResponse::format($list);
     }
 
@@ -54,7 +57,8 @@ class Goods extends BaseController
      */
     public function getDetail(){
         $id = input('goods_id');
-        $goods = $this->service->getDetailAndComment($id);
+        $openid = $this->getOpenid();
+        $goods = $this->service->getDetailAndComment($openid,$id);
         return CodeResponse::format($goods);
     }
 
@@ -80,6 +84,44 @@ class Goods extends BaseController
     public function getGoodsStock(){
         $goods_id = input('goods_id');
         $list = $this->service->getStocks($goods_id);
+        return CodeResponse::format($list);
+    }
+
+    /**
+     * 收藏
+     * @return \think\response\Json
+     */
+    public function collect(){
+        $goods_id = input('goods_id');
+        $openid = $this->getOpenid();
+        $opt = input('opt');
+        $cache = Cache::get('collection_goods_'.$openid);
+        if ($opt != 'cancel'){
+            if ($cache){
+                array_push($cache,$goods_id);
+            }else{
+                $cache = [$goods_id];
+            }
+        }else{
+            if ($key = array_search($goods_id,$cache)){
+                unset($cache[$key]);
+            }
+        }
+        $res = Cache::set('collection_goods_'.$openid,$cache);
+        return $res ? CodeResponse::format() : CodeResponse::fail();
+    }
+
+    /**
+     * 获取收藏商品列表
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getCollection(){
+        $openid = $this->getOpenid();
+        $cache = Cache::get('collection_goods_'.$openid);
+        $list = $this->service->getGoodsByIds($cache);
         return CodeResponse::format($list);
     }
 }

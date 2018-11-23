@@ -1,0 +1,91 @@
+﻿{include file="common/meta"}
+<title>商品管理</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 商品管理 <span class="c-gray en">&gt;</span> 商品列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<form action="{:url('index')}" method="post">
+		<div class="text-c">
+			<input type="text" class="input-text" style="width:250px" placeholder="输入商品名称" id="" name="keywords">
+			<button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜商品</button>
+		</div>
+	</form>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="layerFull('添加','{:url(\'add\')}')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加商品</a></span> <span class="r">共有数据：<strong>{$list|count}</strong> 条</span> </div>
+	<table class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+				<th scope="col" colspan="20">列表</th>
+			</tr>
+			<tr class="text-c">
+				<th width="25"><input type="checkbox" name="" value=""></th>
+				<th width="40">ID</th>
+				<th width="150">名称</th>
+				<th width="150">封面</th>
+				<th width="100">价格</th>
+				<th width="100">库存</th>
+				<th width="100">类型</th>
+				<th width="60">状态</th>
+				<th width="100">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		{volist name="list" id="v"}
+			<tr class="text-c">
+				<td><input type="checkbox" value="{$v.id}" name="ids"></td>
+				<td>{$i}</td>
+				<td>{$v.gname}</td>
+				<td><img src="{$v.img_url}" style="height: 50px;"></td>
+				<td>{$v.price}</td>
+				<td>{$v.stock}</td>
+				<td>{$v.genre==1?'优惠券':'普通商品'}</td>
+				<td class="td-status">
+					<span class="label {$v.is_down==0?'label-success':'label-defaunt'} radius">{$v.is_down==0?'已上架':'已下架'}</span>
+				</td>
+				<td class="td-manage"><a style="text-decoration:none" onClick="{$v.is_down==0?'stop':'start'}(this,'{$v.id}','{$v.is_down}','下架','上架','{:url(\'changeIsDown\')}')" href="javascript:;" title="{$v.is_down==1?'上架':'下架'}"><i class="Hui-iconfont">&#xe631;</i></a> <a title="编辑" href="javascript:;" onclick="layerFull('编辑','{:url(\'edit\',[\'id\'=>$v.id])}')" class="ml-15" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="dels(this,'{:url(\'del\')}','{$v.id}')" class="ml-15" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+			</tr>
+		{/volist}
+		</tbody>
+	</table>
+	{$list->render()}
+</div>
+
+<!--_footer 作为公共模版分离出去-->
+{include file="common/footer"}
+<!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+    function stop(obj,id,value,down_text,up_text,url){
+        layer.confirm('确认要'+down_text+'吗？',function(index){
+            $.post(url,{id:id,is_down:value},function (res) {
+                if (res.code === 10000){
+                    $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="start(this,'+id+',1,\''+down_text+'\',\''+up_text+'\',\''+url+'\')" href="javascript:;" title="'+up_text+'"><i class="Hui-iconfont">&#xe603;</i></a>');
+                    $(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已'+down_text+'</span>');
+                    $(obj).remove();
+                    layer.msg('已'+down_text+'!',{icon: 6,time:1000});
+                }else {
+                    layer.msg(res.message,{icon: 2,time:1000});
+                }
+            })
+
+        });
+    }
+
+    function start(obj,id,value,down_text,up_text,url){
+        layer.confirm('确认要'+up_text+'吗？',function(index){
+            $.post(url,{id:id,is_down:value},function (res) {
+                if (res.code === 10000){
+                    $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="stop(this,'+id+',0,\''+down_text+'\',\''+up_text+'\',\''+url+'\')" href="javascript:;" title="'+down_text+'"><i class="Hui-iconfont">&#xe6de;</i></a>');
+                    $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已'+up_text+'</span>');
+                    $(obj).remove();
+                    layer.msg('已'+up_text+'!',{icon: 6,time:1000});
+                }else {
+                    layer.msg(res.message,{icon: 2,time:1000});
+                }
+            })
+
+        });
+    }
+</script>
+</body>
+</html>

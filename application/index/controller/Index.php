@@ -1,6 +1,8 @@
 <?php
 namespace app\index\controller;
 
+use think\Cache;
+
 class Index
 {
     public function index()
@@ -9,10 +11,7 @@ class Index
     }
 
     public function test(){
-        //print_r(input('test/a'));
-        //echo input('test/a')['name'];
-        //print_r(input('test1/a'));
-        //print_r(json_decode(input('test1'),JSON_UNESCAPED_UNICODE));
-        print_r(input('test2/a'));
+        Cache::set('test','hello cache');
+        return Cache::get('test');
     }
 }

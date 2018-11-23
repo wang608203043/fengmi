@@ -10,8 +10,10 @@
 namespace app\common\service;
 
 
+use app\common\component\CodeResponse;
 use app\common\model\BaseModel;
 use app\common\model\Goods;
+use think\Cache;
 
 class GoodsService extends BaseService
 {
@@ -118,18 +120,30 @@ class GoodsService extends BaseService
 
 
     /**
+     * @param $openid
      * @return false|\PDOStatement|string|\think\Collection
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getByRecommend()
+    public function getByRecommend($openid)
     {
-        return $this->model->where(['deleted'=>BaseModel::$DELETED_FALSE,'is_down'=>BaseModel::$ON_LINE,'is_recommend'=>1])
+        $list = $this->model->where(['deleted'=>BaseModel::$DELETED_FALSE,'is_down'=>BaseModel::$ON_LINE,'is_recommend'=>1])
             ->field('id,gname,img_url,price')->select();
+        $cache = Cache::get('collection_goods_'.$openid);
+        foreach ($list as &$item) {
+            $item['collected'] = 0;
+            if ($cache){
+                if (in_array($item->id,$cache)){
+                    $item['collected'] = 1;
+                }
+            }
+        }
+        return $list;
     }
 
     /**
+     * @param $openid
      * @param $page
      * @param int $listRow
      * @param array $where
@@ -139,25 +153,42 @@ class GoodsService extends BaseService
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getByCategory($page, $listRow = 15, $where = [], $order = [])
+    public function getByCategory($openid,$page, $listRow = 15, $where = [], $order = [])
     {
-        return $this->model->where(['deleted'=>BaseModel::$DELETED_FALSE,'is_down'=>BaseModel::$ON_LINE])
+        $list = $this->model->where(['deleted'=>BaseModel::$DELETED_FALSE,'is_down'=>BaseModel::$ON_LINE])
             ->where($where)->field('id,gname,img_url,price')->page($page,$listRow)
             ->order($order)->select();
+        $cache = Cache::get('collection_goods_'.$openid);
+        foreach ($list as &$item) {
+            $item['collected'] = 0;
+            if ($cache){
+                if (in_array($item->id,$cache)){
+                    $item['collected'] = 1;
+                }
+            }
+        }
+        return $list;
     }
 
     /**
      * @param $id
+     * @param $openid
      * @return Goods|array|false|\PDOStatement|string|\think\Model
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getDetailAndComment($id)
+    public function getDetailAndComment($id,$openid)
     {
         $goods = $this->model->findById($id);
         $comments = $goods->goodsComment()->where(['deleted'=>BaseModel::$DELETED_FALSE])->order('create_time desc')->limit(10)->select();
         $list = [];
+        $goods['collected'] = 0;
+        if ($cache = Cache::get('collection_goods_'.$openid)){
+            if (in_array($id,$cache)){
+                $goods['collected'] = 1;
+            }
+        }
         foreach ($comments as $comment) {
             $list[] = [
                 'nick_name'=>$comment->user->nick_name,
@@ -218,5 +249,25 @@ class GoodsService extends BaseService
     public function getCategory()
     {
         return $this->model->category()->select();
+    }
+
+    /**
+     * @param $ids
+     * @return false|\PDOStatement|string|\think\Collection
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getGoodsByIds($ids)
+    {
+        if (is_array($ids)){
+            $list = $this->model->whereIn('id',$ids)
+                ->where(['deleted'=>BaseModel::$DELETED_FALSE,'is_down'=>BaseModel::$ON_LINE,'is_recommend'=>1])
+                ->field('id,gname,img_url,price')->select();
+            foreach ($list as &$item) {
+                $item['collected'] = 1;
+            }
+        }
+        CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR,null,'网络异常');
     }
 }

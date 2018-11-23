@@ -60,16 +60,20 @@ class Order extends BaseController
         $key = input('key');
         $address_id = input('address_id');
         $remark = input('remark');
+        $coupon_id = input('coupon_id');
         $cache = Cache::pull($key);
         if (!$cache){
             return CodeResponse::fail(CodeResponse::CODE_SYSTEM_ERROR,null,'系统异常');
         }
         $auth_id = $this->getUid();
         $openid = $this->getOpenid();
-        $result = $this->service->pay($cache,$auth_id,$openid,$address_id,$remark);
+        $result = $this->service->pay($cache,$auth_id,$openid,$address_id,$remark,$coupon_id);
         return CodeResponse::format($result);
     }
 
+    /**
+     * @return string
+     */
     public function notify(){
         $pay = new Wxpay(config('wx'));
         $res = $pay->verify_notify();

@@ -12,17 +12,15 @@ namespace app\common\service;
 
 use app\common\component\CodeResponse;
 use app\common\model\Cart;
+use app\common\model\Coupon;
 use app\common\model\District;
 use app\common\model\GoodsStock;
 use app\common\model\Order;
-use app\common\model\OrderAddress;
-use app\common\model\Pay;
-use app\common\model\User;
 use app\common\model\UserAddress;
 use think\Cache;
 use think\Log;
 use YYHwxpay\Wxpay;
-
+use Redis;
 class OrderService extends BaseService
 {
     protected $model;
@@ -181,11 +179,24 @@ class OrderService extends BaseService
         return $list;
     }
 
-    public function pay($data,$auth_id,$openid,$address_id,$remark)
+    /**
+     * @param $data
+     * @param $auth_id
+     * @param $openid
+     * @param $address_id
+     * @param $remark
+     * @param $coupon_id
+     * @return string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function pay($data, $auth_id, $openid, $address_id, $remark, $coupon_id)
     {
         $pay['serial'] = build_order_no();
         $pay['auth_id'] = $auth_id;
         $pay['remark'] = $remark;
+        $coupon = (new Coupon())->findById($coupon_id);
         if ($data['type'] == 'cart'){
             foreach ($data['data'] as $datum) {
                 $pay['amount'] += intval($datum['price']*100*$datum['number']);
@@ -193,9 +204,16 @@ class OrderService extends BaseService
         }else{
             $pay['amount'] = intval($data['data']['price']*100*$data['data']['number']);
         }
-        Cache::set($pay['serial'],$pay,900);
-        Cache::set($pay['serial'].'_address',$address_id,900);
-        Cache::set($pay['serial'].'_openid',$openid,900);
+        if ($coupon->condition){
+            if ($pay['amount'] < $coupon->condition){
+                CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR,null,'优惠券不可用');
+            }
+            $pay['amount'] = intval($pay['amount'] - $coupon->amount*100);
+        }else{
+            $pay['amount'] = intval($pay['amount'] - $coupon->amount*100);
+        }
+        $cache_data = ['pay'=>$pay,'address_id'=>$address_id,'openid'=>$openid,'coupon_id'=>$coupon_id,'goods'=>$data];
+        Cache::set($pay['serial'],$cache_data,900);
         return $this->getPayParams($pay, $openid);
     }
 
@@ -207,12 +225,12 @@ class OrderService extends BaseService
     private function getPayParams($data, $openid)
     {
         $pay_param = array(
-            'body' => '青木e卡',
+            'body' => '岛岛家云南野生蜂蜜',
             'out_trade_no' => $data['serial'],
             'spbill_create_ip' => \request()->ip(),
             'total_fee' => $data['amount'],
             'openid' => $openid,
-            'notify_url' => 'https://api.yangshopping.com/fengmi/public/index.php/api/order/notify' //异步通知地址
+            'notify_url' => 'https://fengmi.yangshopping.com/api/order/notify' //异步通知地址
         );
         try {
             $pay = new Wxpay(config('wx'));
@@ -232,67 +250,14 @@ class OrderService extends BaseService
 
     /**
      * @param $wx_data
-     * @throws \think\exception\PDOException
      */
     public function notify($wx_data){
         //out_trade_no total_fee transaction_id
-        //生成流水 生成订单 增加用户消费次数,金额  生成订单商品记录  生成订单地址记录 修改库存
-        $cache = Cache::get($wx_data['out_trade_no']);
-        if($cache){
-            try {
-                $this->model->startTrans();
-                $inserted = $this->model->where('serial',$wx_data['out_trade_no'])->find();
-                if (!$inserted){
-                    $order = (new Order())->saveOrUpdate(null,$cache); //生成订单
-                    if ($order){
-                        $address_id = Cache::get($wx_data['out_trade_no'].'_address');
-                        $order->pay()->save([ //流水
-                            'serial'=> $wx_data['transaction_id'],
-                            'amount'=>$wx_data['total_fee'],
-                            'order_id'=>$order->id,
-                            'auth_id'=>$cache['auth_id'],
-                            'openid'=>Cache::get($wx_data['out_trade_no'].'_openid'),
-                            'trade_time'=>time(),
-                        ]);
-                        //生成订单地址
-                        $address = (new UserAddress())->findById($address_id);
-                        $order->address()->save([
-                            'district_id'=>$address->district_id,
-                            'contact_name'=>$address->contact_name,
-                            'contact_phone'=>$address->contact_phone,
-                            'contact_address'=>$address->contact_address,
-                        ]);
-                        //生成订单商品
-                        $order_goods = [];
-                        $goodsStock = new GoodsStock();
-                        if ($cache['type'] == 'cart'){
-                            foreach ($cache['data'] as $datum) {
-                                $goodsStock->where('id',$datum['goods_stock_id'])->setField('number',$datum['number']);//修改库存
-                                $order_goods[] = [
-                                    'goods_stock_id'=>$datum['goods_stock_id'],
-                                    'number'=>$datum['number']
-                                ];
-                            }
-                        }else{
-                            $order_goods = [
-                                'goods_stock_id'=>$cache['data']['goods_stock_id'],
-                                'number'=>$cache['data']['number']
-                            ];
-                            $goodsStock->where('id',$cache['data']['goods_stock_id'])->setField('number',$cache['data']['number']);
-                        }
-                        $order->goodsStock()->saveAll($order_goods);
-                        //修改用户消费次数
-                        $user_info = $order->user->user;
-                        $user_info->consume_amount += $wx_data['total_fee'];
-                        $user_info->consume_count += 1;
-                        $user_info->save();
-                        $this->model->commit();
-                    }
-                }
-            } catch (\Exception $exception) {
-                $this->model->rollback();
-            }
-        }
+        //生成流水 生成订单 增加用户消费次数,金额  生成订单商品记录  生成订单地址记录 修改库存 修改已售 增加积分
+        $redis = new Redis();
+        $redis->connect('127.0.0.1',6379);
+        $redis->auth('wang911017');
+        $redis->lPush('order_queue',json_encode($wx_data));
     }
 
 }

@@ -40,8 +40,9 @@ class User extends BaseController
             if ($user){
                 $cache['uid'] = $user->id;
             }else{
+                $parent_id = input('parent_id',0);
                 $uid = $this->service->baseSave(null,['openid'=>$res['openid']]);
-                $this->service->createUser($uid);
+                $this->service->createUser($uid,$parent_id);
                 $cache['uid'] = $uid;
             }
             $cache_key = crypt($res['session_key'].uniqid(),self::SESSION_SALT);
@@ -76,6 +77,18 @@ class User extends BaseController
         $auth_id = $this->getUid();
         $list = $this->service->getAddressList($auth_id);
         return CodeResponse::format($list);
+    }
+
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getParentId(){
+        $auth_id = $this->getUid();
+        $extend = $this->service->getUserExtend($auth_id);
+        return CodeResponse::format(['parent_id'=>$extend->id]);
     }
 
 }
