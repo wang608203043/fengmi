@@ -42,7 +42,7 @@ class OrderQueue extends Command
         try {
             while (true) {
                 $this->restart($count);
-                if (!$conn || !$conn->getPdo()->getAttribute(PDO::ATTR_SERVER_INFO)) {
+                if (!$conn || $conn->getPdo()->getAttribute(PDO::ATTR_SERVER_INFO) == null) {
                     $conn = Db::connect([], true);
                 }
                 $count++;
