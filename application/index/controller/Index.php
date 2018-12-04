@@ -2,6 +2,7 @@
 namespace app\index\controller;
 
 use think\Cache;
+use think\Queue;
 
 class Index
 {
@@ -13,5 +14,17 @@ class Index
     public function test(){
         Cache::init()->lpush('test','hello list');
         return Cache::get('test');
+    }
+
+    public function queueTest(){
+        $jobHandler = config('job_handler.test');
+        $jobQueueName = 'test';
+        $jobData = [ 'ts' => time(), 'bizId' => uniqid() , 'a' => 1 ] ;
+        $isPushed = Queue::push($jobHandler,$jobData,$jobQueueName);
+        if( $isPushed !== false ){
+            echo date('Y-m-d H:i:s') . " a new Hello Job is Pushed to the MQ"."<br>";
+        }else{
+            echo 'Oops, something went wrong.';
+        }
     }
 }

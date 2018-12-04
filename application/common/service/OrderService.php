@@ -257,7 +257,7 @@ class OrderService extends BaseService
         $redis = new Redis();
         $redis->connect('127.0.0.1',6379);
         $redis->auth('wang911017');
-        $redis->lPush('order_queue',json_encode($wx_data));
+        $redis->lPush('order_queue',serialize($wx_data));
     }
 
 }

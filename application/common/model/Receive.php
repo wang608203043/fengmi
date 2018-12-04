@@ -15,7 +15,12 @@ class Receive extends BaseModel
     protected $table = 'receive';
     protected $autoWriteTimestamp = 'datetime';
 
-
+    public function user(){
+        return $this->belongsTo('Auth','auth_id','id');
+    }
+    public function coupon(){
+        return $this->belongsTo('Coupon','coupon_id','id');
+    }
     /**
      * @param $id
      * @param $field_values
