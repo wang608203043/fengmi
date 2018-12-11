@@ -23,4 +23,7 @@ return [
         'api/Merchant/getAccessToken',
         'api/Utils/upload',
     ],
+    'job_handler'=>[
+        'order_queue'=>'app\console\job\OrderQueue',
+    ],
 ];

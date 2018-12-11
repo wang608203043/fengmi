@@ -3,40 +3,20 @@
  * Created by PhpStorm.
  * User: mayn
  * Author: wang
- * Date: 2018/10/17
- * Time: 16:17
+ * Date: 2018/11/14
+ * Time: 16:41
  */
 
 namespace app\common\model;
 
-/**
- * Class Auth
- * @package app\common\model
- * @property $id
- * @property $img_url
- * @property $nick_name
- * @property $openid
- * @property $create_time
- * @property $update_time
- *
- *
- * @property User $user
- */
-class Auth extends BaseModel
+
+class IntegralOrder extends BaseModel
 {
-    protected $table = 'wx_auth';
+    protected $table = 'integral_order';
     protected $autoWriteTimestamp = 'datetime';
 
-    public function user(){
-        return $this->hasOne('User','auth_id','id');
-    }
-
-    public function address(){
-        return $this->hasMany('UserAddress','auth_id','id');
-    }
-
-    public function receive(){
-        return $this->hasMany('Receive','auth_id','id');
+    public function integral(){
+        return $this->belongsTo('Integral','integral_id','id');
     }
 
     /**

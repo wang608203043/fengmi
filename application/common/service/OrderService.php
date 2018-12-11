@@ -16,11 +16,10 @@ use app\common\model\Coupon;
 use app\common\model\District;
 use app\common\model\GoodsStock;
 use app\common\model\Order;
-use app\common\model\UserAddress;
 use think\Cache;
 use think\Log;
+use think\Queue;
 use YYHwxpay\Wxpay;
-use Redis;
 class OrderService extends BaseService
 {
     protected $model;
@@ -250,14 +249,26 @@ class OrderService extends BaseService
 
     /**
      * @param $wx_data
+     * @return bool
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function notify($wx_data){
         //out_trade_no total_fee transaction_id
         //生成流水 生成订单 增加用户消费次数,金额  生成订单商品记录  生成订单地址记录 修改库存 修改已售 增加积分
-        $redis = new Redis();
-        $redis->connect('127.0.0.1',6379);
-        $redis->auth('wang911017');
-        $redis->lPush('order_queue',serialize($wx_data));
+        $inserted = $this->model->where('serial', $wx_data['out_trade_no'])->field('id')->find();
+        if (!$inserted){
+            $jobHandler = config('job_handler.order_queue');
+            $jobQueueName = 'order_queue';
+            $jobData = $wx_data;
+            $isPushed = Queue::push($jobHandler,$jobData,$jobQueueName);
+            if( $isPushed !== false ){
+                return true;
+            }
+            return false;
+        }
+        return true;
     }
 
 }

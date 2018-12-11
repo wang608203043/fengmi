@@ -175,4 +175,27 @@ class AuthService extends BaseService
         }
         return $user->save();
     }
+
+    /**
+     * @param $auth_id
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getActiveCoupon($auth_id)
+    {
+        $data = [];
+        $list = $this->model->receive()->where(['used'=>0,'auth_id'=>$auth_id])->with('coupon')
+            ->order('create_time desc')->select();
+        foreach ($list as $item) {
+            $data[] = [
+                'title'=>$item->coupon->title,
+                'amount'=> $item->coupon->amount,
+                'condition'=> $item->coupon->condition,
+                'create_time'=> $item->create_time,
+            ];
+        }
+        return $data;
+    }
 }

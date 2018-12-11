@@ -39,13 +39,14 @@ class IntegralService extends BaseService
      * @param int $listRow
      * @param array $where
      * @param array $order
+     * @param string $field
      * @return false|\PDOStatement|string|\think\Collection
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function baseListByPage($page = 1, $listRow = 15, $where = [], $order = []){
-        return $this->model->selectActiveByPage($page,$listRow,$where,$order);
+    public function baseListByPage($page = 1, $listRow = 15, $where = [], $order = [],$field = '*'){
+        return $this->model->selectActiveByPage($page,$listRow,$where,$order,$field);
     }
 
     /**

@@ -25,4 +25,6 @@ return [
     'log_write'    => [],
     // 应用结束
     'app_end'      => [],
+    //队列任务失败监听
+    'queue_failed' => ['app\api\behavior\QueueFailedLog'],
 ];

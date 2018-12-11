@@ -91,4 +91,15 @@ class User extends BaseController
         return CodeResponse::format(['parent_id'=>$extend->id]);
     }
 
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getCoupon(){
+        $auth_id = $this->getUid();
+        $list = $this->service->getActiveCoupon($auth_id);
+        return CodeResponse::format($list);
+    }
 }

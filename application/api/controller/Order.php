@@ -79,14 +79,20 @@ class Order extends BaseController
 
     /**
      * @return string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function notify(){
         $pay = new Wxpay(config('wx'));
         $res = $pay->verify_notify();
         Log::write($res,'NOTIFY_CHECK',true);
         if (!$res['error']){
-            $this->service->notify($res['data']);
-            return "<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>";
+            $res = $this->service->notify($res['data']);
+            if ($res){
+                return "<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>";
+            }
         }
+        return CodeResponse::fail();
     }
 }

@@ -73,8 +73,6 @@ class Integral extends BaseController
         $data['gname'] = input('gname','');
         $data['price'] = input('price',0);
         $data['img_url'] = input('img_url','');
-        $data['images'] = input('images','');
-        $data['content'] = input('content');
         $data['stock'] = input('stock',0);
         $data['genre'] = input('genre',1);
         $res = $this->service->baseSave($id,$data);

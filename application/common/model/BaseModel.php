@@ -119,17 +119,18 @@ class BaseModel extends Model
 
     /**
      * 普通分页
-     * @param $page
-     * @param $listRow
+     * @param int $page
+     * @param int $listRow
      * @param array $where
      * @param array $order
+     * @param string $field
      * @return false|\PDOStatement|string|\think\Collection
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function selectActiveByPage($page = 1, $listRow = 15, $where = [], $order = []){
-        return $this->where($where)->where('deleted',self::$DELETED_FALSE)->order($order)->page($page,$listRow)->select();
+    public function selectActiveByPage($page = 1, $listRow = 15, $where = [], $order = [],$field = '*'){
+        return $this->field($field)->where($where)->where('deleted',self::$DELETED_FALSE)->order($order)->page($page,$listRow)->select();
     }
 
     /**

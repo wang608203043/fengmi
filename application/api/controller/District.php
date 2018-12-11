@@ -28,7 +28,7 @@ class District extends BaseController
             $list = (new DistrictService())->getCities($province_id);
         }elseif ($city_id){
             $list = (new DistrictService())->getAreas($city_id);
-        }else{
+        }elseif (!($city_id && $province_id)){
             $list = (new DistrictService())->getProvinces();
         }
         return CodeResponse::format($list);
