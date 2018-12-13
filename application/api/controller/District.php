@@ -24,12 +24,12 @@ class District extends BaseController
     public function getList(){
         $province_id = input('province_id');
         $city_id = input('city_id');
-        if ($province_id){
-            $list = (new DistrictService())->getCities($province_id);
-        }elseif ($city_id){
-            $list = (new DistrictService())->getAreas($city_id);
-        }elseif (!($city_id && $province_id)){
+        if (!$city_id && !$province_id){
             $list = (new DistrictService())->getProvinces();
+        }elseif ($province_id){
+            $list = (new DistrictService())->getCities($province_id);
+        }else{
+            $list = (new DistrictService())->getAreas($city_id);
         }
         return CodeResponse::format($list);
     }
