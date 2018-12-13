@@ -10,6 +10,7 @@
 namespace app\api\controller;
 
 
+use app\common\component\CodeResponse;
 use think\Cache;
 use think\Controller;
 use think\Log;
@@ -32,11 +33,17 @@ class BaseController extends Controller
 
     public function getUid(){
         $cache = Cache::get($this->session_key);
+        if (!$cache){
+            CodeResponse::error(CodeResponse::CODE_ERROR_TOKEN_EXPIRE,null,'登陆过期');
+        }
         return $cache['uid'];
     }
 
     public function getOpenid(){
         $cache = Cache::get($this->session_key);
+        if (!$cache){
+            CodeResponse::error(CodeResponse::CODE_ERROR_TOKEN_EXPIRE,null,'登陆过期');
+        }
         return $cache['openid'];
     }
 }
