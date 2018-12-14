@@ -260,15 +260,12 @@ class GoodsService extends BaseService
      */
     public function getGoodsByIds($ids)
     {
-        if (is_array($ids)){
-            $list = $this->model->whereIn('id',$ids)
-                ->where(['deleted'=>BaseModel::$DELETED_FALSE,'is_down'=>BaseModel::$ON_LINE,'is_recommend'=>1])
-                ->field('id,gname,img_url,price')->select();
-            foreach ($list as &$item) {
-                $item['collected'] = 1;
-            }
-            return $list;
+        $list = $this->model->whereIn('id',$ids)
+            ->where(['deleted'=>BaseModel::$DELETED_FALSE,'is_down'=>BaseModel::$ON_LINE,'is_recommend'=>1])
+            ->field('id,gname,img_url,price')->select();
+        foreach ($list as &$item) {
+            $item['collected'] = 1;
         }
-        CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR,null,'网络异常');
+        return $list;
     }
 }
