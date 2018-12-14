@@ -267,6 +267,7 @@ class GoodsService extends BaseService
             foreach ($list as &$item) {
                 $item['collected'] = 1;
             }
+            return $list;
         }
         CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR,null,'网络异常');
     }

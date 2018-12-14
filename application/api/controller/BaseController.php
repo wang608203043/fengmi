@@ -13,7 +13,6 @@ namespace app\api\controller;
 use app\common\component\CodeResponse;
 use think\Cache;
 use think\Controller;
-use think\Log;
 use think\Request;
 
 class BaseController extends Controller
