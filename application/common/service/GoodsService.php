@@ -13,6 +13,7 @@ namespace app\common\service;
 use app\common\component\CodeResponse;
 use app\common\model\BaseModel;
 use app\common\model\Goods;
+use app\common\model\GoodsComment;
 use think\Cache;
 
 class GoodsService extends BaseService
@@ -181,7 +182,8 @@ class GoodsService extends BaseService
     public function getDetailAndComment($id,$openid)
     {
         $goods = $this->model->findById($id);
-        $comments = $goods->goodsComment()->where(['deleted'=>BaseModel::$DELETED_FALSE])->order('create_time desc')->limit(10)->select();
+        $comments = (new GoodsComment())->where(['deleted'=>BaseModel::$DELETED_FALSE])
+            ->order('create_time desc')->limit(10)->select();
         $list = [];
         $goods['collected'] = 0;
         if ($cache = Cache::get('collection_goods_'.$openid)){
@@ -189,15 +191,13 @@ class GoodsService extends BaseService
                 $goods['collected'] = 1;
             }
         }
-        if ($comments){
-            foreach ($comments as $comment) {
-                $list[] = [
-                    'nick_name'=>$comment->user->nick_name,
-                    'img_url'=>$comment->user->img_url,
-                    'content'=>$comment->content,
-                    'create_time'=>$comment->create_time
-                ];
-            }
+        foreach ($comments as $comment) {
+            $list[] = [
+                'nick_name'=>$comment->user->nick_name,
+                'img_url'=>$comment->user->img_url,
+                'content'=>$comment->content,
+                'create_time'=>$comment->create_time
+            ];
         }
         $goods['goodsComment'] = $list;
         return $goods;
