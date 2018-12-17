@@ -58,7 +58,7 @@ class Goods extends BaseController
     public function getDetail(){
         $id = input('goods_id');
         $openid = $this->getOpenid();
-        $goods = $this->service->getDetailAndComment($openid,$id);
+        $goods = $this->service->getDetailAndComment($id,$openid);
         return CodeResponse::format($goods);
     }
 
