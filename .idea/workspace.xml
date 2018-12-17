@@ -30,8 +30,8 @@
       <file leaf-file-name="GoodsService.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/common/service/GoodsService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="194" column="23" lean-forward="true" selection-start-line="194" selection-start-column="23" selection-end-line="194" selection-end-column="23" />
+            <state relative-caret-position="215">
+              <caret line="185" column="52" lean-forward="false" selection-start-line="185" selection-start-column="52" selection-end-line="185" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -309,7 +309,7 @@
       <workItem from="1544495286563" duration="15345000" />
       <workItem from="1544672239142" duration="2401000" />
       <workItem from="1544779551183" duration="1055000" />
-      <workItem from="1545038883941" duration="601000" />
+      <workItem from="1545038883941" duration="675000" />
     </task>
     <task id="LOCAL-00001" summary="'优化'">
       <created>1541659012086</created>
@@ -430,11 +430,18 @@
       <option name="project" value="LOCAL" />
       <updated>1545039266769</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="'优化'">
+      <created>1545039493908</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1545039493908</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150435000" />
+    <option name="totallyTimeSpent" value="150509000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="174" y="118" width="1592" height="882" extended-state="0" />
@@ -838,8 +845,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/common/service/GoodsService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="194" column="23" lean-forward="true" selection-start-line="194" selection-start-column="23" selection-end-line="194" selection-end-column="23" />
+        <state relative-caret-position="215">
+          <caret line="185" column="52" lean-forward="false" selection-start-line="185" selection-start-column="52" selection-end-line="185" selection-end-column="52" />
           <folding />
         </state>
       </provider>
