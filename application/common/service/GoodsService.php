@@ -189,13 +189,15 @@ class GoodsService extends BaseService
                 $goods['collected'] = 1;
             }
         }
-        foreach ($comments as $comment) {
-            $list[] = [
-                'nick_name'=>$comment->user->nick_name,
-                'img_url'=>$comment->user->img_url,
-                'content'=>$comment->content,
-                'create_time'=>$comment->create_time
-            ];
+        if ($comments){
+            foreach ($comments as $comment) {
+                $list[] = [
+                    'nick_name'=>$comment->user->nick_name,
+                    'img_url'=>$comment->user->img_url,
+                    'content'=>$comment->content,
+                    'create_time'=>$comment->create_time
+                ];
+            }
         }
         $goods['goodsComment'] = $list;
         return $goods;
