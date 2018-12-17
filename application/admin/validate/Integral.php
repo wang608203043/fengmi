@@ -19,8 +19,8 @@ class Integral extends Validate
         'gname'=>'require',
         'price'=>'require',
         'img_url'=>'require',
-        'images'=>'require',
-        'content'=>'require',
+        //'images'=>'require',
+        //'content'=>'require',
         'stock'=>'require',
         'genre'=>'require',
     ];
@@ -30,8 +30,8 @@ class Integral extends Validate
         'gname.require'=>'名称必须填写',
         'price.require'=>'价格必须填写',
         'img_url.require'=>'封面图必须上传',
-        'images.require'=>'轮播图必须上传',
-        'content.require'=>'图文介绍必须上传',
+        //'images.require'=>'轮播图必须上传',
+        //'content.require'=>'图文介绍必须上传',
         'stock.require'=>'库存必须填写',
         'genre.require'=>'类型必须填写',
     ];
