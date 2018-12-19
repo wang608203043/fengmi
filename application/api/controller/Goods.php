@@ -105,6 +105,8 @@ class Goods extends BaseController
         }else{
             if ($key = array_search($goods_id,$cache)){
                 unset($cache[$key]);
+            }else{
+                return CodeResponse::fail(CodeResponse::CODE_PARAMS_ERROR,null,'参数错误');
             }
         }
         $res = Cache::set('collection_goods_'.$openid,$cache);
