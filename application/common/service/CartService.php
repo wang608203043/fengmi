@@ -105,7 +105,7 @@ class CartService extends BaseService
      */
     public function getCarts($auth_id, $page, $listRow = 10)
     {
-        $carts = $this->model->where(['auth_id'=>$auth_id])->page($page,$listRow)->order('create_time desc')->select();
+        $carts = $this->model->where(['auth_id'=>$auth_id])->order('create_time desc')->page($page,$listRow)->select();
         $list = [];
         foreach ($carts as $cart) {
             $list[] = [

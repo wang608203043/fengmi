@@ -29,7 +29,7 @@ class Cart extends BaseModel
     }
 
     public function goodsStock(){
-        return $this->hasOne('GoodsStock','goods_stock_id','id');
+        return $this->belongsTo('GoodsStock','goods_stock_id','id');
     }
 
     /**
