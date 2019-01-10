@@ -95,4 +95,38 @@ class Order extends BaseController
         }
         return CodeResponse::fail();
     }
+
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getList(){
+        $auth_id = $this->getUid();
+        $status = input('status');
+        $page = input('page');
+        $list = (new OrderService())->getList($auth_id,$status,$page);
+        return CodeResponse::format($list);
+    }
+
+    public function confirm(){
+        $order_id = input('order_id');
+        $res = (new OrderService())->confirm($order_id);
+        return $res ? CodeResponse::format() : CodeResponse::fail();
+    }
+
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function comment(){
+        $data['goods_id'] = input('goods_id');
+        $data['content'] = input('content');
+        $data['auth_id'] = $this->getUid();
+        $res = (new OrderService())->comment($data);
+        return $res ? CodeResponse::format() : CodeResponse::fail();
+    }
 }

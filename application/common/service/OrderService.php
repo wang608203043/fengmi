@@ -14,6 +14,7 @@ use app\common\component\CodeResponse;
 use app\common\model\Cart;
 use app\common\model\Coupon;
 use app\common\model\District;
+use app\common\model\GoodsComment;
 use app\common\model\GoodsStock;
 use app\common\model\Order;
 use think\Cache;
@@ -192,7 +193,7 @@ class OrderService extends BaseService
      */
     public function pay($data, $auth_id, $openid, $address_id, $remark, $coupon_id)
     {
-        $pay['serial'] = build_order_no();
+        $pay['serial'] = uniqueNumber();
         $pay['auth_id'] = $auth_id;
         $pay['remark'] = $remark;
         $coupon = (new Coupon())->findById($coupon_id);
@@ -269,6 +270,70 @@ class OrderService extends BaseService
             return false;
         }
         return true;
+    }
+
+    /**
+     * @param $auth_id
+     * @param $status
+     * @param $page
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getList($auth_id, $status, $page)
+    {
+        $statusMap = Order::$statusMap;
+        if (in_array($status,$statusMap)){
+            $data = [];
+            $orders = (new Order())->where(['auth_id'=>$auth_id,'status'=>$status])->page($page,3)->select();
+            foreach ($orders as $order) {
+                $order_goods = $order->goodsStock;
+                $goods_list = [];
+                foreach ($order_goods as $order_good) {
+                    $goods_list[] = [
+                        'goods_name' => $order_good->stock_name,
+                        'number' => $order_good->pivot['number'],
+                        'price' => $order_good->price,
+                        'attribute' => $order_good->attribute,
+                        'img_url' => $order_good->img_url,
+                        'goods_id' => $order_good->goods_id
+                    ];
+                }
+                $data[] = [
+                    'order_id' => $order->id,
+                    'serial' => $order->serial,
+                    'amount' => $order->amount/100,
+                    'track_no' => $order->track_no,
+                    'status' => $order->status,
+                    'status_text' => Order::$statusTextMap[$status],
+                    'goods_list' => $goods_list
+                ];
+            }
+            return $data;
+        }
+        CodeResponse::error(CodeResponse::CODE_PARAMS_ERROR,null,'订单状态出错');
+    }
+
+    /**
+     * @param $order_id
+     * @return int
+     */
+    public function confirm($order_id)
+    {
+        return (new Order())->updateField($order_id,['status'=>Order::ORDER_COMMENT,'commenting'=>1],'');
+    }
+
+    /**
+     * @param $data
+     * @return $this|false|int
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function comment($data)
+    {
+        return (new GoodsComment())->saveOrUpdate(null,$data);
     }
 
 }

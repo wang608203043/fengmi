@@ -100,6 +100,13 @@ class IntegralOrderService extends BaseService
         return $this->model->where('id',$id)->delete();
     }
 
+    /**
+     * @param $auth_id
+     * @param $integral_id
+     * @param $address_id
+     * @return bool
+     * @throws \think\exception\PDOException
+     */
     public function createOrder($auth_id, $integral_id, $address_id)
     {
         $this->model->startTrans();
@@ -116,7 +123,7 @@ class IntegralOrderService extends BaseService
                         'auth_id'=>$auth_id
                     ]);
                     $this->model->saveOrUpdate(null,[
-                        'serial'=> 'JF-'.build_order_no(),
+                        'serial'=> uniqueNumber(),
                         'auth_id'=>$auth_id,
                         'integral_id'=>$integral_id,
                         'amount'=>$integral->price,
@@ -148,7 +155,7 @@ class IntegralOrderService extends BaseService
             }
         } catch (\Exception $exception) {
             $this->model->rollback();
-            CodeResponse::error(CodeResponse::CODE_PARAMS_ERROR,null,'系统异常');
+            CodeResponse::error(CodeResponse::CODE_PARAMS_ERROR,null,$exception->getMessage());
         }
         return true;
     }

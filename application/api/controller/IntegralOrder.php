@@ -22,6 +22,10 @@ class IntegralOrder extends BaseController
         $this->service = new IntegralOrderService();
     }
 
+    /**
+     * @return \think\response\Json
+     * @throws \think\exception\PDOException
+     */
     public function create(){
         $integral_id = input('integral_id');
         $address_id = input('address_id');

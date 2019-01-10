@@ -67,7 +67,14 @@ class CartService extends BaseService
      * @throws \think\exception\DbException
      */
     public function baseSave($id, $field_values){
-        return $this->model->saveOrUpdate($id,$field_values);
+        $goods = (new Cart())
+            ->where(['goods_stock_id'=>$field_values['goods_stock_id'],'auth_id'=>$field_values['auth_id']])->find();
+        if ($goods){
+            $goods->number += $field_values['number'];
+            return $goods->save();
+        }else{
+            return $this->model->saveOrUpdate($id,$field_values);
+        }
     }
 
     /**

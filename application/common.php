@@ -132,3 +132,22 @@ function array_unset_tt($arr,$key){
     }
     return $res;
 }
+
+function uniqueNumber()
+{
+    return date('YmdHis') . substr(implode(NULL, array_map('ord', str_split(strrev(substr(uniqid(), 7, 13)), 1))), 0, 8);
+}
+
+function createNonceStr( $length = 32 )
+{
+    $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+    $str ="";
+    for ( $i = 0; $i < $length; $i++ ) {
+        $str.= substr($chars, mt_rand(0, strlen($chars)-1), 1);
+    }
+    return $str;
+}
+
+function uniqueStr(){
+    return md5(uniqid(microtime(true),true));
+}
