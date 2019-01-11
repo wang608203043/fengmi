@@ -33,4 +33,17 @@ class IntegralOrder extends BaseController
         $res = $this->service->createOrder($auth_id,$integral_id,$address_id);
         return $res ? CodeResponse::format() : CodeResponse::fail();
     }
+
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getList(){
+        $auth_id = $this->getUid();
+        $page = input('page',1);
+        $list = $this->service->getOrderList($auth_id,$page);
+        return CodeResponse::format($list);
+    }
 }

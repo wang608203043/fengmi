@@ -159,4 +159,19 @@ class IntegralOrderService extends BaseService
         }
         return true;
     }
+
+    /**
+     * @param $auth_id
+     * @param $page
+     * @return false|\PDOStatement|string|\think\Collection
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getOrderList($auth_id, $page)
+    {
+        $list = $this->model->with('integral')->where(['auth_id'=>$auth_id,'deleted'=>IntegralOrder::$DELETED_FALSE])
+            ->order(['status'=>'asc','create_time'=>'desc'])->page($page,5)->select();
+        return $list;
+    }
 }

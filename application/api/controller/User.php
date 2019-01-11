@@ -102,4 +102,10 @@ class User extends BaseController
         $list = $this->service->getActiveCoupon($auth_id);
         return CodeResponse::format($list);
     }
+
+    public function getIntegral(){
+        $auth_id = $this->getUid();
+        $result = $this->service->getIntegral($auth_id);
+        return CodeResponse::format($result);
+    }
 }

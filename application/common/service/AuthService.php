@@ -198,4 +198,9 @@ class AuthService extends BaseService
         }
         return $data;
     }
+
+    public function getIntegral($auth_id)
+    {
+        return $this->model->where(['auth_id'=>$auth_id])->value('score',0);
+    }
 }
