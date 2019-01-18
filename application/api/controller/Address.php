@@ -40,13 +40,25 @@ class Address extends BaseController
     }
 
     /**
-     * 删除购物车
+     * 删除
      * @return \think\response\Json
      */
     public function del(){
         $address_id = input('address_id');
         $res = $this->service->delete($address_id);
         return $res ? CodeResponse::format() : CodeResponse::fail();
+    }
+
+    /**
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getList(){
+        $auth_id = $this->getUid();
+        $list = $this->service->getList($auth_id);
+        return CodeResponse::format($list);
     }
 
 }
