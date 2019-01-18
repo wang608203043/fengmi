@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b9364a68-5097-4a7e-bd6b-88f41d809e97" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/api/controller/Address.php" afterPath="$PROJECT_DIR$/application/api/controller/Address.php" />
-      <change beforePath="$PROJECT_DIR$/application/common/service/UserAddressService.php" afterPath="$PROJECT_DIR$/application/common/service/UserAddressService.php" />
+      <change beforePath="$PROJECT_DIR$/application/api/controller/Order.php" afterPath="$PROJECT_DIR$/application/api/controller/Order.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,12 +16,12 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/api/controller/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="107" column="41" lean-forward="false" selection-start-line="107" selection-start-column="41" selection-end-line="107" selection-end-column="41" />
+            <state relative-caret-position="1675">
+              <caret line="77" column="39" lean-forward="false" selection-start-line="77" selection-start-column="39" selection-end-line="77" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -31,48 +30,28 @@
       <file leaf-file-name="AuthService.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/common/service/AuthService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="198" column="21" lean-forward="true" selection-start-line="198" selection-start-column="21" selection-end-line="198" selection-end-column="21" />
+            <state relative-caret-position="2825">
+              <caret line="122" column="19" lean-forward="false" selection-start-line="122" selection-start-column="19" selection-end-line="122" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IntegralOrder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/api/controller/IntegralOrder.php">
+      <file leaf-file-name="Order.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/api/controller/Order.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="32" column="38" lean-forward="false" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+            <state relative-caret-position="546">
+              <caret line="58" column="35" lean-forward="true" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IntegralOrderService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/common/service/IntegralOrderService.php">
+      <file leaf-file-name="OrderService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/common/service/OrderService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="134" column="53" lean-forward="true" selection-start-line="134" selection-start-column="53" selection-end-line="134" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Address.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/api/controller/Address.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="57" column="30" lean-forward="true" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserAddressService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/common/service/UserAddressService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="105" column="68" lean-forward="true" selection-start-line="105" selection-start-column="68" selection-end-line="105" selection-end-column="68" />
+            <state relative-caret-position="515">
+              <caret line="174" column="58" lean-forward="true" selection-start-line="174" selection-start-column="58" selection-end-line="174" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -144,7 +123,6 @@
         <option value="$PROJECT_DIR$/application/common/service/CartService.php" />
         <option value="$PROJECT_DIR$/application/common.php" />
         <option value="$PROJECT_DIR$/application/common/model/Order.php" />
-        <option value="$PROJECT_DIR$/application/api/controller/Order.php" />
         <option value="$PROJECT_DIR$/application/common/service/OrderService.php" />
         <option value="$PROJECT_DIR$/application/api/controller/User.php" />
         <option value="$PROJECT_DIR$/application/api/controller/IntegralOrder.php" />
@@ -152,6 +130,7 @@
         <option value="$PROJECT_DIR$/application/common/service/IntegralOrderService.php" />
         <option value="$PROJECT_DIR$/application/common/service/UserAddressService.php" />
         <option value="$PROJECT_DIR$/application/api/controller/Address.php" />
+        <option value="$PROJECT_DIR$/application/api/controller/Order.php" />
       </list>
     </option>
   </component>
@@ -198,6 +177,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -266,7 +246,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -344,7 +323,8 @@
       <workItem from="1547102874285" duration="7697000" />
       <workItem from="1547178188309" duration="1009000" />
       <workItem from="1547698791278" duration="1198000" />
-      <workItem from="1547794679415" duration="458000" />
+      <workItem from="1547794679415" duration="799000" />
+      <workItem from="1547795832587" duration="639000" />
     </task>
     <task id="LOCAL-00001" summary="'优化'">
       <created>1541659012086</created>
@@ -521,17 +501,24 @@
       <option name="project" value="LOCAL" />
       <updated>1547794900167</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="'优化'">
+      <created>1547795141259</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1547795141259</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165692000" />
+    <option name="totallyTimeSpent" value="166672000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="298" y="64" width="1592" height="882" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23759791" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17362924" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977304" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -819,20 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/common/service/OrderService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="333" column="34" lean-forward="true" selection-start-line="333" selection-start-column="34" selection-end-line="333" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/api/controller/Order.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="106" column="31" lean-forward="true" selection-start-line="106" selection-start-column="31" selection-end-line="106" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/common/model/BaseModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -868,22 +841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/api/controller/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="107" column="41" lean-forward="false" selection-start-line="107" selection-start-column="41" selection-end-line="107" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/common/service/AuthService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="198" column="21" lean-forward="true" selection-start-line="198" selection-start-column="21" selection-end-line="198" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/api/controller/IntegralOrder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -908,18 +865,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/common/service/UserAddressService.php">
+    <entry file="file://$PROJECT_DIR$/application/api/controller/Address.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="105" column="68" lean-forward="true" selection-start-line="105" selection-start-column="68" selection-end-line="105" selection-end-column="68" />
+        <state relative-caret-position="771">
+          <caret line="45" column="26" lean-forward="true" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/api/controller/Address.php">
+    <entry file="file://$PROJECT_DIR$/application/common/service/UserAddressService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="57" column="30" lean-forward="true" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
+        <state relative-caret-position="371">
+          <caret line="102" column="7" lean-forward="true" selection-start-line="102" selection-start-column="7" selection-end-line="102" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/api/controller/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1675">
+          <caret line="77" column="39" lean-forward="false" selection-start-line="77" selection-start-column="39" selection-end-line="77" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/common/service/AuthService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2825">
+          <caret line="122" column="19" lean-forward="false" selection-start-line="122" selection-start-column="19" selection-end-line="122" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/common/service/OrderService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="174" column="58" lean-forward="true" selection-start-line="174" selection-start-column="58" selection-end-line="174" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/api/controller/Order.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="58" column="35" lean-forward="true" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
           <folding />
         </state>
       </provider>

@@ -53,7 +53,13 @@ class Order extends BaseController
         }else{
             return CodeResponse::fail();
         }
-        return CodeResponse::format(['data'=>$data,'key'=>$cache_key]);
+        return CodeResponse::format(['key'=>$cache_key]);
+    }
+
+    public function getOrderData(){
+        $key = input('key');
+        $data = Cache::get($key);
+        return CodeResponse::format($data);
     }
 
     /**
