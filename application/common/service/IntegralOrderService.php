@@ -114,7 +114,7 @@ class IntegralOrderService extends BaseService
             $integral = $this->model->integral()->where(['id',$integral_id])->find();
             $user = (new User())->where(['auth_id'=>$auth_id])->find();
             if ($integral && $user){
-                if ($user->score < $integral->price && $integral->stock>0){
+                if ($user->score < $integral->price || $integral->stock>0){
                     CodeResponse::error(CodeResponse::CODE_PARAMS_ERROR,null,'积分或库存不足,无法兑换');
                 }
                 if ($integral->genre == 1){ //优惠券商品
