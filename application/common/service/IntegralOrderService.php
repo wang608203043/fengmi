@@ -120,7 +120,8 @@ class IntegralOrderService extends BaseService
                 if ($integral->genre == 1){ //优惠券商品
                     (new Receive())->saveOrUpdate(null,[
                         'coupon_id'=>$integral->coupon_id,
-                        'auth_id'=>$auth_id
+                        'auth_id'=>$auth_id,
+                        'code' => uniqueStr()
                     ]);
                     $this->model->saveOrUpdate(null,[
                         'serial'=> uniqueNumber(),
@@ -133,7 +134,7 @@ class IntegralOrderService extends BaseService
                 }else { //实物商品
                     $address = (new UserAddress())->findById($address_id);
                     $this->model->saveOrUpdate(null,[
-                        'serial'=> 'JF-'.build_order_no(),
+                        'serial'=> uniqueNumber(),
                         'auth_id'=>$auth_id,
                         'integral_id'=>$integral_id,
                         'amount'=>$integral->price,
