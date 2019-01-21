@@ -111,7 +111,7 @@ class IntegralOrderService extends BaseService
     {
         $this->model->startTrans();
         try {
-            $integral = $this->model->integral()->where(['id',$integral_id])->find();
+            $integral = $this->model->integral()->where(['id'=>$integral_id])->find();
             $user = (new User())->where(['auth_id'=>$auth_id])->find();
             if ($integral && $user){
                 if ($user->score < $integral->price || $integral->stock>0){
