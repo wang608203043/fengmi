@@ -296,7 +296,7 @@ class OrderService extends BaseService
                         'number' => $order_good->pivot['number'],
                         'price' => $order_good->price,
                         'attribute' => $order_good->attribute,
-                        'img_url' => $order_good->img_url,
+                        'img_url' => $order_good->goods->img_url,
                         'goods_id' => $order_good->goods_id
                     ];
                 }
