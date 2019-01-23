@@ -190,10 +190,11 @@ class AuthService extends BaseService
             ->order('create_time desc')->select();
         foreach ($list as $item) {
             $data[] = [
+                'id'=>$item->id,
                 'title'=>$item->coupon->title,
                 'amount'=> $item->coupon->amount,
                 'condition'=> $item->coupon->condition,
-                'create_time'=> $item->create_time,
+                'create_time'=> $item->create_time
             ];
         }
         return $data;
