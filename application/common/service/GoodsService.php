@@ -12,6 +12,7 @@ namespace app\common\service;
 
 use app\common\model\BaseModel;
 use app\common\model\Goods;
+use app\common\model\GoodsComment;
 use think\Cache;
 
 class GoodsService extends BaseService
@@ -267,5 +268,17 @@ class GoodsService extends BaseService
             $item['collected'] = 1;
         }
         return $list;
+    }
+
+    /**
+     * @param $data
+     * @return $this|false|int
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function comment($data)
+    {
+        return (new GoodsComment())->saveOrUpdate(null,$data);
     }
 }

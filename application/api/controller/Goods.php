@@ -126,4 +126,12 @@ class Goods extends BaseController
         $list = $this->service->getGoodsByIds($cache);
         return CodeResponse::format($list);
     }
+
+    public function comment(){
+        $data['goods_id'] = input('goods_id');
+        $data['auth_id'] = $this->getUid();
+        $data['content'] = input('content');
+        $res = (new GoodsService())->comment($data);
+        return $res ? CodeResponse::format() : CodeResponse::fail();
+    }
 }
