@@ -116,7 +116,9 @@ class OrderQueue
                     $user_info['update_time'] += date('Y-m-d H:i:s');
                     Db::table('wx_user')->where('id', $user_info['id'])->update($user_info);
                     //修改优惠券状态
-                    Db::table('receive')->where('id', $cache['coupon_id'])->setField('used', 1);
+                    if ($cache['coupon_id']){
+                        Db::table('receive')->where('id', $cache['coupon_id'])->setField('used', 1);
+                    }
                     Db::commit();
                     $logData = [
                         'out_trade_no'=>$data['out_trade_no'],
