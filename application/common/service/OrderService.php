@@ -241,7 +241,6 @@ class OrderService extends BaseService
             $res = $pay->create_order($pay_param);
             if ($res['error'] == 0) {
                 $jsParameter = $pay->get_jsbridge_param($res['data']['prepay_id']);
-                Log::write($jsParameter, 'PAY_RETURN', true);
                 return $jsParameter;
             } else {
                 Log::write($res, 'PAY_RETURN_ERROR', true);
