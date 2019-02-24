@@ -113,7 +113,7 @@ class OrderQueue
                     $user_info['consume_count'] += 1;
                     $user_info['score'] += $score;
                     $user_info['score_total'] += $score;
-                    $user_info['update_time'] += date('Y-m-d H:i:s');
+                    $user_info['update_time'] = date('Y-m-d H:i:s');
                     Db::table('wx_user')->where('id', $user_info['id'])->update($user_info);
                     //修改优惠券状态
                     if ($cache['coupon_id']){

@@ -217,7 +217,7 @@ class OrderService extends BaseService
         }
 
         $cache_data = ['pay'=>$pay,'address_id'=>$address_id,'openid'=>$openid,'coupon_id'=>$coupon_id,'goods'=>$data];
-        Cache::set($pay['serial'],$cache_data,900);
+        Cache::set($pay['serial'],$cache_data,3600);
         return $this->getPayParams($pay, $openid);
     }
 
