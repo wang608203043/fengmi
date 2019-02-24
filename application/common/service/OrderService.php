@@ -141,9 +141,8 @@ class OrderService extends BaseService
      */
     public function getStock($goods_stock_id,$number)
     {
-        $data = [];
         $stock = (new GoodsStock())->findById($goods_stock_id);
-        $data[] = [
+        $data = [
             'goods_stock_id' => $stock->id,
             'gname'=>$stock->goods->gname,
             'attribute'=> $stock->attribute,
