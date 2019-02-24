@@ -34,7 +34,7 @@ class OrderQueue
         //执行任务逻辑
         Db::startTrans();
         print("<info>Job is start!"."</info> \n");
-        print("<info>".json_encode($data)."</info> \n");
+        print("<info>".$data['out_trade_no']."</info> \n");
         try {
             $inserted = Db::table('order')->where('serial', $data['out_trade_no'])->field('id')->find();
             if (!$inserted) {
