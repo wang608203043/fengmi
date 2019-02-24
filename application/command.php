@@ -10,5 +10,5 @@
 // +----------------------------------------------------------------------
 
 return [
-    //'app\console\command\OrderQueue',
+    'app\console\command\OrderQueue',
 ];
