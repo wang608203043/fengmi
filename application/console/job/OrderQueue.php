@@ -18,6 +18,7 @@ use think\queue\Job;
 class OrderQueue
 {
     public function fire(Job $job,$data){
+        print("<info>Job is fire!"."</info> \n");
         $isDone = $this->execute($data);
         if ($isDone){
             $job->delete();
