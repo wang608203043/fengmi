@@ -197,21 +197,25 @@ class OrderService extends BaseService
         $pay['auth_id'] = $auth_id;
         $pay['remark'] = $remark;
         $coupon = (new Coupon())->findById($coupon_id);
+        $pay['amount'] = 0;
         if ($data['type'] == 'cart'){
             foreach ($data['data'] as $datum) {
                 $pay['amount'] += intval($datum['price']*100*$datum['number']);
-            }
+        }
         }else{
             $pay['amount'] = intval($data['data']['price']*100*$data['data']['number']);
         }
-        if ($coupon->condition){
-            if ($pay['amount'] < $coupon->condition){
-                CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR,null,'优惠券不可用');
+        if ($coupon){
+            if ($coupon->condition){
+                if ($pay['amount'] < $coupon->condition){
+                    CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR,null,'优惠券不可用');
+                }
+                $pay['amount'] = intval($pay['amount'] - $coupon->amount*100);
+            }else{
+                $pay['amount'] = intval($pay['amount'] - $coupon->amount*100);
             }
-            $pay['amount'] = intval($pay['amount'] - $coupon->amount*100);
-        }else{
-            $pay['amount'] = intval($pay['amount'] - $coupon->amount*100);
         }
+
         $cache_data = ['pay'=>$pay,'address_id'=>$address_id,'openid'=>$openid,'coupon_id'=>$coupon_id,'goods'=>$data];
         Cache::set($pay['serial'],$cache_data,900);
         return $this->getPayParams($pay, $openid);
