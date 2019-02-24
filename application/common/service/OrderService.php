@@ -264,7 +264,7 @@ class OrderService extends BaseService
         $inserted = $this->model->where('serial', $wx_data['out_trade_no'])->field('id')->find();
         if (!$inserted){
             $jobHandler = config('job_handler.order_queue');
-            $jobQueueName = 'order_queue';
+            $jobQueueName = 'orderQueue';
             $jobData = $wx_data;
             $isPushed = Queue::push($jobHandler,$jobData,$jobQueueName);
             if( $isPushed !== false ){
