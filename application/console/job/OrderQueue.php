@@ -33,6 +33,7 @@ class OrderQueue
     protected function execute($data){
         //执行任务逻辑
         Db::startTrans();
+        print("<info>Job is start!"."</info> \n");
         try {
             $inserted = Db::table('order')->where('serial', $data['out_trade_no'])->field('id')->find();
             if (!$inserted) {
@@ -122,8 +123,10 @@ class OrderQueue
                     Log::write($logData,'order_queue_job_done_log',true);
                 }
             }
+            print("<info>Job is Done!"."</info> \n");
             return true;
         } catch (\Exception $exception) {
+            print("<info>Job is failed!"."</info> \n");
             Db::rollback();
             return false;
         }
