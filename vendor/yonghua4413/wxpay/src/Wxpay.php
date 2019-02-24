@@ -94,7 +94,7 @@ class Wxpay {
 	 */
 	public function verify_notify()
 	{
-		$xml = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : '';
+		$xml = trim(file_get_contents('php://input'));
 		if(!$xml){
 			return array('error' => 1, 'msg' => 'post数据为空');
 		}

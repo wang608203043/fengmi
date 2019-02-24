@@ -11,6 +11,6 @@ return [
     'app_secret'=>'0fcfc690eb838024907cda27b99ff63b',
     'key'=>'daodaojiafengmi20190128DAODAOJIA',
     'app_mchid'=>'1519331081',
-    'notify_url'=>'http://fengmi.yangshopping.com/api/order/notify',
+    'notify_url'=>'https://fengmi.yangshopping.com/api/order/notify',
     'type'=>'JSAPI',
 ];
