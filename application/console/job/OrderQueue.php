@@ -65,15 +65,14 @@ class OrderQueue
                     ]);
                     //生成订单商品
                     $order_goods = [];
-                    $goodsStock = Db::table('goods_stock');
-                    $goods = Db::table('goods');
                     if ($cache['goods']['type'] == 'cart') {
                         //删除购物车
                         $carts = [];
                         foreach ($cache['goods']['data'] as $datum) {
-                            $stock = $goodsStock->where('id', $datum['goods_stock_id'])->find();//修改库存
-                            $goodsStock->where('id', $datum['goods_stock_id'])->setDec('stock', $datum['number']);
-                            $goods->where('id', $stock['goods_id'])
+                            $stock = Db::table('goods_stock')->where('id', $datum['goods_stock_id'])->find();//修改库存
+                            Db::table('goods_stock')->where('id', $datum['goods_stock_id'])
+                                ->setDec('stock', $datum['number']);
+                            Db::table('goods')->where('id', $stock['goods_id'])
                                 ->setInc('saled', $datum['number']);
                             $order_goods[] = [
                                 'goods_stock_id' => $datum['goods_stock_id'],
@@ -89,10 +88,11 @@ class OrderQueue
                             'number' => $cache['goods']['data']['number'],
                             'order_id' => $order_id
                         ];
-                        $stock = $goodsStock->where('id', $cache['goods']['data']['goods_stock_id'])->find();//修改库存
-                        $goodsStock->where('id', $cache['goods']['data']['goods_stock_id'])
+                        $stock = Db::table('goods_stock')
+                            ->where('id', $cache['goods']['data']['goods_stock_id'])->find();//修改库存
+                        Db::table('goods_stock')->where('id', $cache['goods']['data']['goods_stock_id'])
                             ->setDec('stock', $cache['goods']['data']['number']);
-                        $goods->where('id', $stock['goods_id'])
+                        Db::table('goods')->where('id', $stock['goods_id'])
                             ->setInc('saled', $cache['goods']['data']['number']);
                     }
                     Db::table('order_goods')->insertAll($order_goods);

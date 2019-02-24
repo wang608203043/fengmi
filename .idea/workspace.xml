@@ -40,8 +40,8 @@
       <file leaf-file-name="OrderQueue.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/console/job/OrderQueue.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="132" column="71" lean-forward="false" selection-start-line="132" selection-start-column="71" selection-end-line="132" selection-end-column="71" />
+            <state relative-caret-position="-925">
+              <caret line="68" column="31" lean-forward="true" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -298,14 +298,7 @@
       <workItem from="1548234858326" duration="682000" />
       <workItem from="1548829846320" duration="710000" />
       <workItem from="1550990402510" duration="723000" />
-      <workItem from="1550993107235" duration="7602000" />
-    </task>
-    <task id="LOCAL-00002" summary="'优化'">
-      <created>1541670180010</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1541670180010</updated>
+      <workItem from="1550993107235" duration="8143000" />
     </task>
     <task id="LOCAL-00003" summary="'优化'">
       <created>1541673316505</created>
@@ -643,11 +636,18 @@
       <option name="project" value="LOCAL" />
       <updated>1551000651534</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="'优化'">
+      <created>1551001094504</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1551001094504</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184688000" />
+    <option name="totallyTimeSpent" value="185229000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="172" y="62" width="1592" height="883" extended-state="0" />
@@ -1053,8 +1053,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/console/job/OrderQueue.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="132" column="71" lean-forward="false" selection-start-line="132" selection-start-column="71" selection-end-line="132" selection-end-column="71" />
+        <state relative-caret-position="-925">
+          <caret line="68" column="31" lean-forward="true" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
           <folding />
         </state>
       </provider>
