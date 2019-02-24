@@ -42,6 +42,7 @@ class OrderQueue
                 $cache = Cache::get($data['out_trade_no']);
                 $cache['pay']['create_time'] = date('Y-m-d H:i:s');
                 $cache['pay']['update_time'] = date('Y-m-d H:i:s');
+                print("<info>".json_encode($cache['pay'])."</info> \n");
                 $order_id = Db::table('order')->insertGetId($cache['pay']); //生成订单
                 if ($order_id) {
                     Db::table('pay')->insert([ //流水
