@@ -35,6 +35,7 @@ class OrderQueue
         Db::startTrans();
         print("<info>Job is start!"."</info> \n");
         try {
+            print("<info>".json_encode($data)."</info> \n");
             $inserted = Db::table('order')->where('serial', $data['out_trade_no'])->field('id')->find();
             if (!$inserted) {
                 $cache = Cache::get($data['out_trade_no']);
