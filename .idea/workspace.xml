@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b9364a68-5097-4a7e-bd6b-88f41d809e97" name="Default" comment="'优化'">
+    <list default="true" id="b9364a68-5097-4a7e-bd6b-88f41d809e97" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/application/console/job/OrderQueue.php" afterPath="$PROJECT_DIR$/application/console/job/OrderQueue.php" />
     </list>
@@ -40,8 +40,8 @@
       <file leaf-file-name="OrderQueue.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/console/job/OrderQueue.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="747">
-              <caret line="134" column="37" lean-forward="true" selection-start-line="134" selection-start-column="37" selection-end-line="134" selection-end-column="37" />
+            <state relative-caret-position="622">
+              <caret line="129" column="80" lean-forward="true" selection-start-line="129" selection-start-column="80" selection-end-line="129" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -297,7 +297,7 @@
       <workItem from="1548234858326" duration="682000" />
       <workItem from="1548829846320" duration="710000" />
       <workItem from="1550990402510" duration="723000" />
-      <workItem from="1550993107235" duration="4660000" />
+      <workItem from="1550993107235" duration="4717000" />
     </task>
     <task id="LOCAL-00001" summary="'优化'">
       <created>1541659012086</created>
@@ -586,11 +586,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550997577569</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="'优化'">
+      <created>1550997971220</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1550997971220</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="181746000" />
+    <option name="totallyTimeSpent" value="181803000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="172" y="62" width="1592" height="883" extended-state="0" />
@@ -996,8 +1003,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/console/job/OrderQueue.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="747">
-          <caret line="134" column="37" lean-forward="true" selection-start-line="134" selection-start-column="37" selection-end-line="134" selection-end-column="37" />
+        <state relative-caret-position="622">
+          <caret line="129" column="80" lean-forward="true" selection-start-line="129" selection-start-column="80" selection-end-line="129" selection-end-column="80" />
           <folding />
         </state>
       </provider>
