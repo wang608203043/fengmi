@@ -9,8 +9,8 @@
 return [
     'app_id'=>'wx9bdb7583639306e1',
     'app_secret'=>'0fcfc690eb838024907cda27b99ff63b',
-    'key'=>'2b2906e6a31467d803a97b3aa21ddc0a',
-    'app_mchid'=>'1517678931',
-    'notify_url'=>'http://qingmu.xcxcyy.com/api/order/notify',
+    'key'=>'daodaojiafengmi20190128DAODAOJIA',
+    'app_mchid'=>'1519331081',
+    'notify_url'=>'http://fengmi.yangshopping.com/api/order/notify',
     'type'=>'JSAPI',
 ];
