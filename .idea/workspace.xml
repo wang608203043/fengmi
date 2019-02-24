@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b9364a68-5097-4a7e-bd6b-88f41d809e97" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/common/service/OrderService.php" afterPath="$PROJECT_DIR$/application/common/service/OrderService.php" />
+      <change beforePath="$PROJECT_DIR$/application/console/job/OrderQueue.php" afterPath="$PROJECT_DIR$/application/console/job/OrderQueue.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,21 +27,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrderService.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OrderService.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/common/service/OrderService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="-1260">
               <caret line="264" column="24" lean-forward="true" selection-start-line="264" selection-start-column="24" selection-end-line="264" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrderQueue.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="OrderQueue.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/console/job/OrderQueue.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1725">
-              <caret line="27" column="18" lean-forward="true" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+            <state relative-caret-position="300">
+              <caret line="132" column="71" lean-forward="false" selection-start-line="132" selection-start-column="71" selection-end-line="132" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -120,8 +120,8 @@
         <option value="$PROJECT_DIR$/application/extra/wx.php" />
         <option value="$PROJECT_DIR$/vendor/yonghua4413/wxpay/src/Wxpay.php" />
         <option value="$PROJECT_DIR$/application/command.php" />
-        <option value="$PROJECT_DIR$/application/console/job/OrderQueue.php" />
         <option value="$PROJECT_DIR$/application/common/service/OrderService.php" />
+        <option value="$PROJECT_DIR$/application/console/job/OrderQueue.php" />
       </list>
     </option>
   </component>
@@ -298,14 +298,7 @@
       <workItem from="1548234858326" duration="682000" />
       <workItem from="1548829846320" duration="710000" />
       <workItem from="1550990402510" duration="723000" />
-      <workItem from="1550993107235" duration="7159000" />
-    </task>
-    <task id="LOCAL-00001" summary="'优化'">
-      <created>1541659012086</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1541659012086</updated>
+      <workItem from="1550993107235" duration="7602000" />
     </task>
     <task id="LOCAL-00002" summary="'优化'">
       <created>1541670180010</created>
@@ -643,11 +636,18 @@
       <option name="project" value="LOCAL" />
       <updated>1551000216035</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="'优化'">
+      <created>1551000651534</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1551000651534</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184245000" />
+    <option name="totallyTimeSpent" value="184688000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="172" y="62" width="1592" height="883" extended-state="0" />
@@ -1043,18 +1043,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/console/job/OrderQueue.php">
+    <entry file="file://$PROJECT_DIR$/application/common/service/OrderService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1725">
-          <caret line="27" column="18" lean-forward="true" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        <state relative-caret-position="-1260">
+          <caret line="264" column="24" lean-forward="true" selection-start-line="264" selection-start-column="24" selection-end-line="264" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/common/service/OrderService.php">
+    <entry file="file://$PROJECT_DIR$/application/console/job/OrderQueue.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="264" column="24" lean-forward="true" selection-start-line="264" selection-start-column="24" selection-end-line="264" selection-end-column="24" />
+        <state relative-caret-position="300">
+          <caret line="132" column="71" lean-forward="false" selection-start-line="132" selection-start-column="71" selection-end-line="132" selection-end-column="71" />
           <folding />
         </state>
       </provider>

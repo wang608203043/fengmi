@@ -130,6 +130,7 @@ class OrderQueue
         } catch (\Exception $exception) {
             print("<info>Job is failed!"."</info> \n");
             print("<info>Job is failed!".$exception->getMessage()."</info> \n");
+            print("<info>Job is failed!".$exception->getTraceAsString()."</info> \n");
             Db::rollback();
             return false;
         }
