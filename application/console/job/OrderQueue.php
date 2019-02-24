@@ -19,11 +19,12 @@ class OrderQueue
 {
     public function fire(Job $job,$data){
         $isDone = $this->execute($data);
+        print("<info>Job is start!"."</info> \n");
         if ($isDone){
             $job->delete();
         }else{
             if ($job->attempts() > 3) {//通过这个方法可以检查这个任务已经重试了几次了
-                $job->delete();
+                //$job->delete();
             }else{
                 $job->release(3); //重新发布任务,延迟三秒执行
             }
@@ -33,7 +34,6 @@ class OrderQueue
     protected function execute($data){
         //执行任务逻辑
         Db::startTrans();
-        print("<info>Job is start!"."</info> \n");
         try {
             $inserted = Db::table('order')->where('serial', $data['out_trade_no'])->field('id')->find();
             if (!$inserted) {
