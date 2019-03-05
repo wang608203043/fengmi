@@ -114,6 +114,7 @@ class CartService extends BaseService
     {
         $carts = $this->model->where(['auth_id'=>$auth_id])->order('create_time desc')->page($page,$listRow)->select();
         $list = [];
+        $count = 0;
         foreach ($carts as $cart) {
             $list[] = [
                 'id'=>$cart->id,
@@ -123,7 +124,8 @@ class CartService extends BaseService
                 'attribute'=>$cart->goodsStock->attribute,
                 'number'=>$cart->number,
             ];
+            $count += $cart->goodsStock->price*$cart->number;
         }
-        return $list;
+        return ['list'=>$list,'count'=>$count];
     }
 }
