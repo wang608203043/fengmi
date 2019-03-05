@@ -30,6 +30,10 @@ class OrderQueue
         }
     }
 
+    /**
+     * @param $data
+     * @return bool
+     */
     protected function execute($data){
         //执行任务逻辑
         Db::startTrans();
@@ -124,6 +128,7 @@ class OrderQueue
                     Log::write($logData,'order_queue_job_done_log',true);
                 }
             }
+            Db::clear();
             return true;
         } catch (\Exception $exception) {
             Db::rollback();
