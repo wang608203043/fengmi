@@ -119,15 +119,9 @@ class OrderQueue
                     if ($cache['coupon_id']){
                         Db::table('receive')->where('id', $cache['coupon_id'])->setField('used', 1);
                     }
-                    Db::commit();
-                    $logData = [
-                        'out_trade_no'=>$data['out_trade_no'],
-                        'transaction_id'=>$data['transaction_id'],
-                        'done_time'=>date('Y-m-d H:i:s')
-                    ];
-                    Log::write($logData,'order_queue_job_done_log',true);
                 }
             }
+            Db::commit();
             return true;
         } catch (\Exception $exception) {
             Db::rollback();
