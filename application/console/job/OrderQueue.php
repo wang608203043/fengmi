@@ -39,7 +39,6 @@ class OrderQueue
                 $cache = Cache::get($data['out_trade_no']);
                 $cache['pay']['create_time'] = date('Y-m-d H:i:s');
                 $cache['pay']['update_time'] = date('Y-m-d H:i:s');
-                print("<info>".json_encode($cache['pay'])."</info> \n");
                 $order_id = Db::table('order')->insertGetId($cache['pay']); //生成订单
                 if ($order_id) {
                     Db::table('pay')->insert([ //流水
@@ -125,12 +124,8 @@ class OrderQueue
                     Log::write($logData,'order_queue_job_done_log',true);
                 }
             }
-            print("<info>Job is Done at ".date('Y-m-d H:i:s')."</info> \n");
             return true;
         } catch (\Exception $exception) {
-            print("<info>Job is failed at ".date('Y-m-d H:i:s')."</info> \n");
-            print("<info>Job is failed!".$exception->getMessage()."</info> \n");
-            print("<info>Job is failed!".$exception->getTraceAsString()."</info> \n");
             Db::rollback();
             return false;
         }
