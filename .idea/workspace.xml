@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b9364a68-5097-4a7e-bd6b-88f41d809e97" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/common/service/CartService.php" afterPath="$PROJECT_DIR$/application/common/service/CartService.php" />
+      <change beforePath="$PROJECT_DIR$/application/console/job/OrderQueue.php" afterPath="$PROJECT_DIR$/application/console/job/OrderQueue.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,21 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Cart.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/api/controller/Cart.php">
+      <file leaf-file-name="OrderQueue.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/console/job/OrderQueue.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="68" column="39" lean-forward="false" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CartService.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/common/service/CartService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="128" column="47" lean-forward="false" selection-start-line="128" selection-start-column="47" selection-end-line="128" selection-end-column="47" />
+            <state relative-caret-position="300">
+              <caret line="129" column="41" lean-forward="true" selection-start-line="129" selection-start-column="41" selection-end-line="129" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -109,9 +99,9 @@
         <option value="$PROJECT_DIR$/application/extra/wx.php" />
         <option value="$PROJECT_DIR$/vendor/yonghua4413/wxpay/src/Wxpay.php" />
         <option value="$PROJECT_DIR$/application/command.php" />
-        <option value="$PROJECT_DIR$/application/console/job/OrderQueue.php" />
         <option value="$PROJECT_DIR$/application/common/service/OrderService.php" />
         <option value="$PROJECT_DIR$/application/common/service/CartService.php" />
+        <option value="$PROJECT_DIR$/application/console/job/OrderQueue.php" />
       </list>
     </option>
   </component>
@@ -137,8 +127,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="172" />
-    <option name="y" value="62" />
+    <option name="x" value="181" />
+    <option name="y" value="176" />
     <option name="width" value="1592" />
     <option name="height" value="883" />
   </component>
@@ -174,19 +164,6 @@
               <item name="fengmi" type="b2602c69:ProjectViewProjectNode" />
               <item name="fengmi" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="api" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="fengmi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fengmi" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="api" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="fengmi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fengmi" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="console" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -195,6 +172,51 @@
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="console" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="job" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="fengmi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fengmi" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="fengmi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fengmi" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="topthink" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="fengmi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fengmi" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="topthink" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="think-queue" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="fengmi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fengmi" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="topthink" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="think-queue" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="fengmi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fengmi" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="topthink" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="think-queue" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="queue" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="fengmi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fengmi" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="topthink" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="think-queue" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="queue" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="command" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -289,14 +311,8 @@
       <workItem from="1548829846320" duration="710000" />
       <workItem from="1550990402510" duration="723000" />
       <workItem from="1550993107235" duration="10860000" />
-      <workItem from="1551779659058" duration="1029000" />
-    </task>
-    <task id="LOCAL-00009" summary="'优化'">
-      <created>1543915817317</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1543915817317</updated>
+      <workItem from="1551779659058" duration="1708000" />
+      <workItem from="1551791675732" duration="2221000" />
     </task>
     <task id="LOCAL-00010" summary="'优化'">
       <created>1543918355733</created>
@@ -634,17 +650,24 @@
       <option name="project" value="LOCAL" />
       <updated>1551779940661</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="'优化'">
+      <created>1551780887049</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1551780887049</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="188975000" />
+    <option name="totallyTimeSpent" value="191875000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="172" y="62" width="1592" height="883" extended-state="0" />
+    <frame x="181" y="176" width="1592" height="883" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19386423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1964752" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933334" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -680,13 +703,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/common/model/Integral.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/common/model/Receive.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -971,7 +987,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="65">
           <caret line="96" column="54" lean-forward="true" selection-start-line="96" selection-start-column="54" selection-end-line="96" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1000,14 +1015,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="21" column="64" lean-forward="true" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/console/job/OrderQueue.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="117" column="29" lean-forward="true" selection-start-line="117" selection-start-column="29" selection-end-line="117" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -1015,7 +1022,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="40" column="39" lean-forward="false" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1023,7 +1029,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="515">
           <caret line="152" column="22" lean-forward="false" selection-start-line="152" selection-start-column="22" selection-end-line="152" selection-end-column="22" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/common/service/CartService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="111" column="7" lean-forward="true" selection-start-line="111" selection-start-column="7" selection-end-line="111" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -1031,14 +1043,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="472">
           <caret line="68" column="39" lean-forward="false" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/topthink/think-queue/src/queue/command/Work.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="73" column="16" lean-forward="true" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/common/service/CartService.php">
+    <entry file="file://$PROJECT_DIR$/application/console/job/OrderQueue.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="128" column="47" lean-forward="false" selection-start-line="128" selection-start-column="47" selection-end-line="128" selection-end-column="47" />
+        <state relative-caret-position="300">
+          <caret line="129" column="41" lean-forward="true" selection-start-line="129" selection-start-column="41" selection-end-line="129" selection-end-column="41" />
           <folding />
         </state>
       </provider>

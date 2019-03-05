@@ -18,7 +18,6 @@ use think\queue\Job;
 class OrderQueue
 {
     public function fire(Job $job,$data){
-        print("<info>Job is fire!"."</info> \n");
         $isDone = $this->execute($data);
         if ($isDone){
             $job->delete();
@@ -34,8 +33,6 @@ class OrderQueue
     protected function execute($data){
         //执行任务逻辑
         Db::startTrans();
-        print("<info>Job is start!"."</info> \n");
-        print("<info>".$data['out_trade_no']."</info> \n");
         try {
             $inserted = Db::table('order')->where('serial', $data['out_trade_no'])->field('id')->find();
             if (!$inserted) {
@@ -128,10 +125,10 @@ class OrderQueue
                     Log::write($logData,'order_queue_job_done_log',true);
                 }
             }
-            print("<info>Job is Done!"."</info> \n");
+            print("<info>Job is Done at ".date('Y-m-d H:i:s')."</info> \n");
             return true;
         } catch (\Exception $exception) {
-            print("<info>Job is failed!"."</info> \n");
+            print("<info>Job is failed at ".date('Y-m-d H:i:s')."</info> \n");
             print("<info>Job is failed!".$exception->getMessage()."</info> \n");
             print("<info>Job is failed!".$exception->getTraceAsString()."</info> \n");
             Db::rollback();
