@@ -36,6 +36,7 @@ class OrderQueue
      */
     protected function execute($data){
         //执行任务逻辑
+        Db::connect();
         Db::startTrans();
         try {
             $inserted = Db::table('order')->where('serial', $data['out_trade_no'])->field('id')->find();
