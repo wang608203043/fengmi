@@ -36,6 +36,7 @@ class OrderQueue
      */
     protected function execute($data){
         //执行任务逻辑
+        Db::connect();
         Db::startTrans();
         try {
             $inserted = Db::table('order')->where('serial', $data['out_trade_no'])->field('id')->find();
@@ -128,6 +129,7 @@ class OrderQueue
                     Log::write($logData,'order_queue_job_done_log',true);
                 }
             }
+            Db::clear();
             return true;
         } catch (\Exception $exception) {
             Db::rollback();
