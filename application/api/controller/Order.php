@@ -38,7 +38,7 @@ class Order extends BaseController
         $cache_key = md5(uniqid().time());
         if ($goods_stock_id){
             $number = input('number');
-            $data[] = $this->service->getStock($goods_stock_id,$number);
+            $data = $this->service->getStock($goods_stock_id,$number);
             Cache::set($cache_key,['data'=>$data,'type'=>'stock'],3600);
         }elseif ($cart_ids){
             if (is_string($cart_ids)){
@@ -59,6 +59,9 @@ class Order extends BaseController
     public function getOrderData(){
         $key = input('key');
         $data = Cache::get($key);
+        if (!isset($data[0])){
+            $data = [$data];
+        }
         return CodeResponse::format($data);
     }
 
