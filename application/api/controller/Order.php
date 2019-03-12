@@ -59,8 +59,8 @@ class Order extends BaseController
     public function getOrderData(){
         $key = input('key');
         $data = Cache::get($key);
-        if (!isset($data[0])){
-            $data = [$data];
+        if ($data['type'] == 'stock'){
+            $data['data'] = [$data['data']];
         }
         return CodeResponse::format($data);
     }
