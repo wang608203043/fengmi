@@ -150,7 +150,7 @@ class OrderService extends BaseService
             'img_url'=>$stock->img_url,
             'number'=>$number,
         ];
-        return [$data];
+        return $data;
     }
 
     /**
