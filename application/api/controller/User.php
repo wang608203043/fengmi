@@ -46,7 +46,7 @@ class User extends BaseController
                 $cache['uid'] = $uid;
             }
             $cache_key = crypt($res['session_key'].uniqid(),self::SESSION_SALT);
-            Cache::set($cache_key,$cache,35*24*3600);
+            Cache::set($cache_key,$cache,30*24*3600);
             return CodeResponse::format(['session_key'=>$cache_key]);
         }else{
             CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR,$res,'微信登陆异常');

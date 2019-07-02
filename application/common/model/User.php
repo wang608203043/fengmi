@@ -15,6 +15,8 @@ namespace app\common\model;
  * @property $id
  * @property $consume_amount
  * @property $consume_count
+ * @property $score
+ * @property $score_total
  * @property $create_time
  * @property $update_time
  */

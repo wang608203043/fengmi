@@ -39,7 +39,7 @@ class Order extends BaseController
         if ($goods_stock_id){
             $number = input('number');
             $data = $this->service->getStock($goods_stock_id,$number);
-            Cache::set($cache_key,['data'=>$data,'type'=>'stock'],3600);
+            Cache::set($cache_key,['data'=>$data,'type'=>'stock'],3600);//修改缓存时间
         }elseif ($cart_ids){
             if (is_string($cart_ids)){
                 $cart_ids = explode(',',trim($cart_ids,','));
@@ -67,9 +67,7 @@ class Order extends BaseController
 
     /**
      * @return \think\response\Json
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
      */
     public function prePay(){
         $key = input('key');

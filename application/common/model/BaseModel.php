@@ -81,6 +81,17 @@ class BaseModel extends Model
         return $this->where('id',$id)->find();
     }
 
+    /**
+     * @param $where
+     * @return array|false|\PDOStatement|string|Model|$this
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function findOne($where){
+        return $this->where($where)->find();
+    }
+
 
     /**
      * @param $phone

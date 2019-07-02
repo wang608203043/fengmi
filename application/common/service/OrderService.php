@@ -11,12 +11,15 @@ namespace app\common\service;
 
 
 use app\common\component\CodeResponse;
+use app\common\model\Auth;
 use app\common\model\Cart;
 use app\common\model\Coupon;
 use app\common\model\District;
 use app\common\model\GoodsComment;
 use app\common\model\GoodsStock;
 use app\common\model\Order;
+use app\common\model\Receive;
+use app\common\model\UserAddress;
 use think\Cache;
 use think\Log;
 use think\Queue;
@@ -185,39 +188,87 @@ class OrderService extends BaseService
      * @param $address_id
      * @param $remark
      * @param $coupon_id
-     * @return string
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @return array
+     * @throws \think\exception\PDOException
      */
     public function pay($data, $auth_id, $openid, $address_id, $remark, $coupon_id)
     {
+        //生产订单   删除购物车 生成订单商品记录  生产订单地址  更新用户优惠券状态
         $pay['serial'] = uniqueNumber();
         $pay['auth_id'] = $auth_id;
         $pay['remark'] = $remark;
-        $coupon = (new Coupon())->findById($coupon_id);
         $pay['amount'] = 0;
-        if ($data['type'] == 'cart'){
-            foreach ($data['data'] as $datum) {
-                $pay['amount'] += intval($datum['price']*100*$datum['number']);
-        }
-        }else{
-            $pay['amount'] = intval($data['data']['price']*100*$data['data']['number']);
-        }
-        if ($coupon){
-            if ($coupon->condition){
-                if ($pay['amount'] < $coupon->condition){
-                    CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR,null,'优惠券不可用');
+        $this->model->startTrans();
+        try {
+            $userCoupon = (new Receive())->where(['auth_id'=>$auth_id,'coupon_id'=>$coupon_id,'used'=>0])->find();
+            $address = (new UserAddress())->findById($address_id);
+            //创建订单
+            $order = $this->model->saveOrUpdate(null,$pay);
+            //创建订单地址
+            $order_address_data = [
+                'district_id' => $address->district_id,
+                'contact_name' => $address->contact_name,
+                'contact_phone' => $address->contact_phone,
+                'contact_address' => $address->contact_address,
+            ];
+            $order->address()->save($order_address_data);
+            //创建订单商品记录
+            $order_goods_data = [];
+            if ($data['type'] == 'cart'){
+                $cart_ids = [];
+                $cartModel = new Cart();
+                foreach ($data['data'] as $datum) {
+                    //修改库存
+                    $this->model->goodsStock()->where('id', $datum['goods_stock_id'])
+                        ->setDec('stock', $datum['number']);
+                    $order_goods_data[] = [
+                        'goods_stock_id' => $datum['goods_stock_id'],
+                        'number' => $datum['number']
+                    ];
+                    //计算金额
+                    $pay['amount'] += intval($datum['price']*100*$datum['number']);
+                    array_push($cart_ids, $datum['cart_id']);
                 }
-                $pay['amount'] = intval($pay['amount'] - $coupon->amount*100);
+                //删除购物车
+                $cartModel->whereIn('id',$cart_ids)->delete();
             }else{
-                $pay['amount'] = intval($pay['amount'] - $coupon->amount*100);
+                $order_goods_data[] = [
+                    'goods_stock_id' => $data['data']['goods_stock_id'],
+                    'number' => $data['data']['number']
+                ];
+                //修改库存
+                $this->model->goodsStock()->where('id', $data['data']['goods_stock_id'])
+                    ->setDec('stock', $data['data']['number']);
+                $pay['amount'] = intval($data['data']['price']*100*$data['data']['number']);
             }
+            $this->model->goodsStock()->saveAll($order_goods_data);
+            //使用优惠券
+            if ($userCoupon){
+                if ($userCoupon->coupon->condition){
+                    if ($pay['amount'] < $userCoupon->coupon->condition){
+                        CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR,null,'优惠券不可用');
+                    }
+                    $pay['amount'] = intval($pay['amount'] - $userCoupon->coupon->amount*100);
+                }else{
+                    $pay['amount'] = intval($pay['amount'] - $userCoupon->coupon->amount*100);
+                }
+                $pay['auth_coupon_id'] = $userCoupon->id;
+                //更新优惠券状态
+                $userCoupon->used = 1;
+                $userCoupon->save();
+            }
+            //更新订单金额
+            $order->amount = $pay['amount'];
+            $order->save();
+            $this->model->commit();
+            //获取支付参数
+            $jsParameter = $this->getPayParams($pay, $openid);
+            return ['jsParameter' => $jsParameter,'order_id' => $order->id];
+        } catch (\Exception $exception) {
+            $this->model->rollback();
+            CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR, $exception->getTrace(), $exception->getMessage());
         }
-
-        $cache_data = ['pay'=>$pay,'address_id'=>$address_id,'openid'=>$openid,'coupon_id'=>$coupon_id,'goods'=>$data];
-        Cache::set($pay['serial'],$cache_data,3600);
-        return $this->getPayParams($pay, $openid);
+        return null;
     }
 
     /**
@@ -235,18 +286,14 @@ class OrderService extends BaseService
             'openid' => $openid,
             'notify_url' => 'https://fengmi.yangshopping.com/api/order/notify' //异步通知地址
         );
-        try {
-            $pay = new Wxpay(config('wx'));
-            $res = $pay->create_order($pay_param);
-            if ($res['error'] == 0) {
-                $jsParameter = $pay->get_jsbridge_param($res['data']['prepay_id']);
-                return $jsParameter;
-            } else {
-                Log::write($res, 'PAY_RETURN_ERROR', true);
-                CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR, $res, $res['msg']);
-            }
-        } catch (\Exception $exception) {
-            CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR, $exception->getTrace(), $exception->getMessage());
+        $pay = new Wxpay(config('wx'));
+        $res = $pay->create_order($pay_param);
+        if ($res['error'] == 0) {
+            $jsParameter = $pay->get_jsbridge_param($res['data']['prepay_id']);
+            return $jsParameter;
+        } else {
+            Log::write($res, 'PAY_RETURN_ERROR', true);
+            CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR, $res, $res['msg']);
         }
     }
 
@@ -259,17 +306,40 @@ class OrderService extends BaseService
      */
     public function notify($wx_data){
         //out_trade_no total_fee transaction_id
-        //生成流水 生成订单 增加用户消费次数,金额  生成订单商品记录  生成订单地址记录 修改库存 修改已售 增加积分
-        $inserted = $this->model->where('serial', $wx_data['out_trade_no'])->field('id')->find();
-        if (!$inserted){
-            $jobHandler = config('job_handler.order_queue');
-            $jobQueueName = 'order_queue';
-            $jobData = $wx_data;
-            $isPushed = Queue::push($jobHandler,$jobData,$jobQueueName);
-            if( $isPushed !== false ){
-                return true;
+        //生成流水 增加用户消费次数,金额  修改已售 增加积分
+        $order = $this->model->findOne(['serial' => $wx_data['out_trade_no']]);
+        $this->model->startTrans();
+        try {
+            //支付流水
+            $order->pay()->save([
+                'serial' => $wx_data['transaction_id'],
+                'amount' => $wx_data['total_fee'],
+                'openid' => $wx_data['openid'],
+                'trade_time' => time(),
+            ]);
+            //增加用户消费次数,金额 增加积分
+            $score = floor($wx_data['total_fee'] / 100);
+            if ($order->user->parent_id) {
+                //用户上级增加积分
+                $parent = (new Auth())->findOne(['parent_id'=>$order->user->parent_id]);
+                $parent_user_info = $parent->user;
+                $parent_user_info->score += $score;
+                $parent_user_info->score_total += $score;
+                $parent_user_info->save();
             }
-            return false;
+            $user_info = $order->user->user;
+            $user_info->consume_amount += $wx_data['total_fee'];
+            $user_info->consume_count += 1;
+            $user_info->score += $score;
+            $user_info->score_total += $score;
+            $user_info->save();
+            //修改已售 todo
+            //修改订单状态
+            $order->status = Order::ORDER_PENDING_SEND;
+            $order->save();
+            $this->model->commit();
+        } catch (\Exception $exception) {
+            $this->model->rollback();
         }
         return true;
     }

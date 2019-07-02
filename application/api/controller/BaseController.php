@@ -35,6 +35,7 @@ class BaseController extends Controller
         if (!$cache){
             CodeResponse::error(CodeResponse::CODE_ERROR_TOKEN_EXPIRE,null,'登陆过期');
         }
+        Cache::set($this->session_key,$cache,30*24*3600);
         return $cache['uid'];
     }
 
