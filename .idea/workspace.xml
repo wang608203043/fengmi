@@ -27,11 +27,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/api/controller/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="45" column="61" lean-forward="false" selection-start-line="45" selection-start-column="61" selection-end-line="45" selection-end-column="61" />
+            <state relative-caret-position="422">
+              <caret line="46" column="32" lean-forward="false" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuthService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/common/service/AuthService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="265">
+              <caret line="139" column="31" lean-forward="true" selection-start-line="139" selection-start-column="31" selection-end-line="139" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -47,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Auth.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Auth.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/common/model/Auth.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="24" column="23" lean-forward="false" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+            <state relative-caret-position="207">
+              <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -373,14 +383,7 @@
       <workItem from="1554990546625" duration="114000" />
       <workItem from="1554991167462" duration="14260000" />
       <workItem from="1555578956064" duration="2866000" />
-      <workItem from="1562049690071" duration="11229000" />
-    </task>
-    <task id="LOCAL-00028" summary="'优化'">
-      <created>1548053351063</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1548053351063</updated>
+      <workItem from="1562049690071" duration="11395000" />
     </task>
     <task id="LOCAL-00029" summary="'优化'">
       <created>1548057894529</created>
@@ -718,11 +721,18 @@
       <option name="project" value="LOCAL" />
       <updated>1562060771648</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="2019-07-02  更新订单支付流程">
+      <created>1562060933026</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1562060933026</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="225661000" />
+    <option name="totallyTimeSpent" value="225827000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="145" y="80" width="1526" height="883" extended-state="0" />
@@ -1105,26 +1115,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/common/model/Auth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="24" column="23" lean-forward="false" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/api/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
           <caret line="24" column="6" lean-forward="false" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/common/service/AuthService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="138" column="20" lean-forward="false" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1139,8 +1133,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/api/controller/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="45" column="61" lean-forward="false" selection-start-line="45" selection-start-column="61" selection-end-line="45" selection-end-column="61" />
+        <state relative-caret-position="422">
+          <caret line="46" column="32" lean-forward="false" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/common/service/AuthService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="139" column="31" lean-forward="true" selection-start-line="139" selection-start-column="31" selection-end-line="139" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/common/model/Auth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>
