@@ -14,6 +14,7 @@ use app\common\component\CodeResponse;
 use app\common\model\Auth;
 use app\common\model\BaseModel;
 use app\common\model\District;
+use app\common\model\User;
 
 class AuthService extends BaseService
 {
@@ -137,7 +138,7 @@ class AuthService extends BaseService
     }
 
     public function createUser($auth_id){
-        return $this->model->user()->save(['auth_id'=>$auth_id]);
+        return (new User())->save(['auth_id'=>$auth_id]);
     }
 
     /**
