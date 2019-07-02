@@ -52,11 +52,8 @@ class Auth extends BaseModel
             $model = $this->findById($id);
         }else{
             $model = new self();
+            $model->data($field_values);
         }
-        foreach ($field_values as $field=>$field_value) {
-            $model->$field = $field_value;
-        }
-
         if ($model->save()){
             $model = $this->findById($model->id);
         }
