@@ -14,6 +14,7 @@ use app\common\component\CodeResponse;
 use app\common\service\AuthService;
 use think\Cache;
 use think\helper\Hash;
+use think\Log;
 use think\Request;
 
 class User extends BaseController
@@ -41,9 +42,9 @@ class User extends BaseController
                 $cache['uid'] = $user->id;
             }else{
                 $parent_id = input('parent_id',0);
-                $uid = $this->service->baseSave(null,['openid'=>$res['openid'],'parent_id'=>$parent_id]);
-                $this->service->createUser($uid);
-                $cache['uid'] = $uid;
+                $auth = $this->service->baseSave(null,['openid'=>$res['openid'],'parent_id'=>$parent_id]);
+                $this->service->createUser($auth->id);
+                $cache['uid'] = $auth->id;
             }
             $cache_key = crypt($res['session_key'].uniqid(),self::SESSION_SALT);
             Cache::set($cache_key,$cache,30*24*3600);
