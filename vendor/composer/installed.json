@@ -55,17 +55,17 @@
     },
     {
         "name": "topthink/framework",
-        "version": "v5.0.15",
-        "version_normalized": "5.0.15.0",
+        "version": "v5.0.24",
+        "version_normalized": "5.0.24.0",
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/framework.git",
-            "reference": "7c1375791fe8772e33282ee8611ea465dc215fca"
+            "reference": "c255c22b2f5fa30f320ecf6c1d29f7740eb3e8be"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/top-think/framework/zipball/7c1375791fe8772e33282ee8611ea465dc215fca",
-            "reference": "7c1375791fe8772e33282ee8611ea465dc215fca",
+            "url": "https://api.github.com/repos/top-think/framework/zipball/c255c22b2f5fa30f320ecf6c1d29f7740eb3e8be",
+            "reference": "c255c22b2f5fa30f320ecf6c1d29f7740eb3e8be",
             "shasum": "",
             "mirrors": [
                 {
@@ -86,7 +86,7 @@
             "phpunit/phpunit": "4.8.*",
             "sebastian/phpcpd": "2.*"
         },
-        "time": "2018-01-31T08:40:10+00:00",
+        "time": "2019-01-11T08:04:58+00:00",
         "type": "think-framework",
         "installation-source": "dist",
         "autoload": {
@@ -114,17 +114,17 @@
     },
     {
         "name": "topthink/think-captcha",
-        "version": "v1.0.7",
-        "version_normalized": "1.0.7.0",
+        "version": "v1.0.8",
+        "version_normalized": "1.0.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/think-captcha.git",
-            "reference": "0c55455df26a1626a60d0dc35d2d89002b741d44"
+            "reference": "1d64363c814c92f6086c4fa5e3223fe7e23db09d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/top-think/think-captcha/zipball/0c55455df26a1626a60d0dc35d2d89002b741d44",
-            "reference": "0c55455df26a1626a60d0dc35d2d89002b741d44",
+            "url": "https://api.github.com/repos/top-think/think-captcha/zipball/1d64363c814c92f6086c4fa5e3223fe7e23db09d",
+            "reference": "1d64363c814c92f6086c4fa5e3223fe7e23db09d",
             "shasum": "",
             "mirrors": [
                 {
@@ -133,7 +133,11 @@
                 }
             ]
         },
-        "time": "2016-07-06T01:47:11+00:00",
+        "require": {
+            "topthink/framework": "~5.0.0",
+            "topthink/think-installer": ">=1.0.10"
+        },
+        "time": "2019-01-28T04:48:36+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -158,17 +162,17 @@
     },
     {
         "name": "topthink/think-helper",
-        "version": "v1.0.6",
-        "version_normalized": "1.0.6.0",
+        "version": "v1.0.7",
+        "version_normalized": "1.0.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/think-helper.git",
-            "reference": "0c99dc625b0d2d4124e1b6ca15a3ad6f0125963f"
+            "reference": "5f92178606c8ce131d36b37a57c58eb71e55f019"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/top-think/think-helper/zipball/0c99dc625b0d2d4124e1b6ca15a3ad6f0125963f",
-            "reference": "0c99dc625b0d2d4124e1b6ca15a3ad6f0125963f",
+            "url": "https://api.github.com/repos/top-think/think-helper/zipball/5f92178606c8ce131d36b37a57c58eb71e55f019",
+            "reference": "5f92178606c8ce131d36b37a57c58eb71e55f019",
             "shasum": "",
             "mirrors": [
                 {
@@ -177,7 +181,7 @@
                 }
             ]
         },
-        "time": "2017-04-05T07:15:37+00:00",
+        "time": "2018-10-05T00:43:21+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -346,17 +350,17 @@
     },
     {
         "name": "topthink/think-mongo",
-        "version": "v1.8.2",
-        "version_normalized": "1.8.2.0",
+        "version": "v1.8.5",
+        "version_normalized": "1.8.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/think-mongo.git",
-            "reference": "5433e971b4892b09cbec49090c690f5d4350a981"
+            "reference": "657cc79bd5f090a58b0cc83776073dd69c83a3d1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/top-think/think-mongo/zipball/5433e971b4892b09cbec49090c690f5d4350a981",
-            "reference": "5433e971b4892b09cbec49090c690f5d4350a981",
+            "url": "https://api.github.com/repos/top-think/think-mongo/zipball/657cc79bd5f090a58b0cc83776073dd69c83a3d1",
+            "reference": "657cc79bd5f090a58b0cc83776073dd69c83a3d1",
             "shasum": "",
             "mirrors": [
                 {
@@ -365,7 +369,7 @@
                 }
             ]
         },
-        "time": "2018-01-30T07:12:02+00:00",
+        "time": "2018-06-03T01:51:27+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -388,17 +392,17 @@
     },
     {
         "name": "topthink/think-oracle",
-        "version": "v1.2",
-        "version_normalized": "1.2.0.0",
+        "version": "v1.3",
+        "version_normalized": "1.3.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/think-oracle.git",
-            "reference": "02e902b0cc63502e60995431a0da521454cd6f34"
+            "reference": "89a049e876167030b489322f691aed00799fd68f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/top-think/think-oracle/zipball/02e902b0cc63502e60995431a0da521454cd6f34",
-            "reference": "02e902b0cc63502e60995431a0da521454cd6f34",
+            "url": "https://api.github.com/repos/top-think/think-oracle/zipball/89a049e876167030b489322f691aed00799fd68f",
+            "reference": "89a049e876167030b489322f691aed00799fd68f",
             "shasum": "",
             "mirrors": [
                 {
@@ -407,7 +411,10 @@
                 }
             ]
         },
-        "time": "2017-02-06T02:03:03+00:00",
+        "require": {
+            "topthink/framework": "~5.0.17"
+        },
+        "time": "2018-04-14T00:52:34+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -430,17 +437,17 @@
     },
     {
         "name": "topthink/think-queue",
-        "version": "v1.1.4",
-        "version_normalized": "1.1.4.0",
+        "version": "v1.1.6",
+        "version_normalized": "1.1.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/think-queue.git",
-            "reference": "ad709611d516e13d6760234bc98e91faa901cae8"
+            "reference": "250650eb0e8ea5af4cfdc7ae46f3f4e0a24ac245"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/top-think/think-queue/zipball/ad709611d516e13d6760234bc98e91faa901cae8",
-            "reference": "ad709611d516e13d6760234bc98e91faa901cae8",
+            "url": "https://api.github.com/repos/top-think/think-queue/zipball/250650eb0e8ea5af4cfdc7ae46f3f4e0a24ac245",
+            "reference": "250650eb0e8ea5af4cfdc7ae46f3f4e0a24ac245",
             "shasum": "",
             "mirrors": [
                 {
@@ -453,7 +460,10 @@
             "topthink/think-helper": ">=1.0.4",
             "topthink/think-installer": ">=1.0.10"
         },
-        "time": "2017-06-25T00:49:56+00:00",
+        "require-dev": {
+            "topthink/framework": "~5.0.0"
+        },
+        "time": "2018-10-15T10:16:55+00:00",
         "type": "think-extend",
         "extra": {
             "think-config": {
