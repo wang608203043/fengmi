@@ -43,6 +43,7 @@ class User extends BaseController
             }else{
                 $parent_id = input('parent_id',0);
                 $auth = $this->service->baseSave(null,['openid'=>$res['openid'],'parent_id'=>$parent_id]);
+                Log::write(serialize($auth),'auth_log',true);
                 $this->service->createUser($auth->id);
                 $cache['uid'] = $auth->id;
             }
