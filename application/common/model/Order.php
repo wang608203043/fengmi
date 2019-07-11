@@ -62,7 +62,7 @@ class Order extends BaseModel
     }
 
     public function goodsStock(){
-        return $this->belongsToMany('GoodsStock','order_goods','goods_stock_id','order_id');
+        return $this->belongsToMany('GoodsStock','order_goods','order_id','id');
     }
 
     public function pay(){

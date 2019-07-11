@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b9364a68-5097-4a7e-bd6b-88f41d809e97" name="Default" comment="">
+    <list default="true" id="b9364a68-5097-4a7e-bd6b-88f41d809e97" name="Default" comment="2019-07-11  更新订单支付流程">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/api/controller/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/api/controller/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/common/model/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/common/model/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/common/service/OrderService.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/common/service/OrderService.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +21,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/api/controller/Order.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="122" column="28" selection-start-line="122" selection-start-column="28" selection-end-line="122" selection-end-column="28" />
+            <state relative-caret-position="172">
+              <caret line="124" column="5" lean-forward="true" selection-start-line="124" selection-start-column="5" selection-end-line="124" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -33,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/common/service/OrderService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="399" column="22" selection-start-line="399" selection-start-column="22" selection-end-line="399" selection-end-column="22" />
+            <state relative-caret-position="297">
+              <caret line="229" column="38" selection-start-line="229" selection-start-column="38" selection-end-line="229" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -42,8 +39,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/common/model/Order.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+            <state relative-caret-position="265">
+              <caret line="64" column="47" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -143,8 +140,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="273" />
-    <option name="y" value="140" />
+    <option name="x" value="209" />
+    <option name="y" value="94" />
     <option name="width" value="1526" />
     <option name="height" value="883" />
   </component>
@@ -178,6 +175,19 @@
               <item name="application" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fengmi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fengmi" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fengmi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fengmi" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -278,14 +288,8 @@
       <workItem from="1555578956064" duration="2866000" />
       <workItem from="1562049690071" duration="12761000" />
       <workItem from="1562134744123" duration="228000" />
-      <workItem from="1562831238019" duration="95000" />
-    </task>
-    <task id="LOCAL-00031" summary="'优化'">
-      <created>1548142955268</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1548142955268</updated>
+      <workItem from="1562831238019" duration="498000" />
+      <workItem from="1562831962465" duration="236000" />
     </task>
     <task id="LOCAL-00032" summary="'优化'">
       <created>1548210624088</created>
@@ -623,20 +627,26 @@
       <option name="project" value="LOCAL" />
       <updated>1562061251459</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="2019-07-11  更新订单支付流程">
+      <created>1562831387584</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1562831387585</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="227516000" />
+    <option name="totallyTimeSpent" value="228182000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="273" y="140" width="1526" height="883" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2005457" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20327422" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -649,6 +659,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32933334" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32666665" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -661,16 +672,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="'优化'" />
     <MESSAGE value="2019-07-02  更新订单支付流程" />
-    <option name="LAST_COMMIT_MESSAGE" value="2019-07-02  更新订单支付流程" />
+    <MESSAGE value="2019-07-11  更新订单支付流程" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019-07-11  更新订单支付流程" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/common/model/GoodsStock.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="32" column="28" lean-forward="true" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/api/controller/Goods.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
@@ -934,13 +939,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/thinkphp/library/think/Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14525">
-          <caret line="602" column="33" selection-start-line="602" selection-start-column="33" selection-end-line="602" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/thinkphp/library/think/Log.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -984,28 +982,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
           <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/api/controller/Order.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="122" column="28" selection-start-line="122" selection-start-column="28" selection-end-line="122" selection-end-column="28" />
+        <state relative-caret-position="172">
+          <caret line="124" column="5" lean-forward="true" selection-start-line="124" selection-start-column="5" selection-end-line="124" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thinkphp/library/think/model/relation/BelongsToMany.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="43" column="70" selection-start-line="43" selection-start-column="70" selection-end-line="43" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thinkphp/library/think/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="2089" column="28" lean-forward="true" selection-start-line="2089" selection-start-column="28" selection-end-line="2089" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/common/service/OrderService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="399" column="22" selection-start-line="399" selection-start-column="22" selection-end-line="399" selection-end-column="22" />
+        <state relative-caret-position="297">
+          <caret line="229" column="38" selection-start-line="229" selection-start-column="38" selection-end-line="229" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/common/model/Order.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+        <state relative-caret-position="240">
+          <caret line="63" column="33" lean-forward="true" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
         </state>
       </provider>
     </entry>
