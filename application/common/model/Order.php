@@ -31,7 +31,7 @@ class Order extends BaseModel
     protected $table = 'order';
     protected $autoWriteTimestamp = 'datetime';
 
-    const ORDER_PENDING_PAY = 0; //代发货
+    const ORDER_PENDING_PAY = 0; //待付款
     const ORDER_PENDING_SEND = 1; //代发货
     const ORDER_RECEIVE = 2; //待收货
     const ORDER_COMMENT = 3; //待评价

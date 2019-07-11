@@ -39,7 +39,8 @@ class Order extends BaseController
         if ($goods_stock_id){
             $number = input('number');
             $data = $this->service->getStock($goods_stock_id,$number);
-            Cache::set($cache_key,['data'=>$data,'type'=>'stock'],3600);//修改缓存时间
+            $total = $data['price'] * $data['number'];
+            Cache::set($cache_key,['data'=>$data,'type'=>'stock','total'=>$total],3600);//修改缓存时间
         }elseif ($cart_ids){
             if (is_string($cart_ids)){
                 $cart_ids = explode(',',trim($cart_ids,','));
@@ -49,7 +50,7 @@ class Order extends BaseController
                 return CodeResponse::fail(CodeResponse::CODE_SYSTEM_ERROR,['data'=>$cart_ids],'购物车参数错误');
             }
             $data = $this->service->getCarts($cart_ids);
-            Cache::set($cache_key,['data'=>$data,'type'=>'cart'],3600);
+            Cache::set($cache_key,['data'=>$data['list'],'type'=>'cart','total'=>$data['total']],3600);
         }else{
             return CodeResponse::fail();
         }
