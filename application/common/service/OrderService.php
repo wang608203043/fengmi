@@ -227,7 +227,7 @@ class OrderService extends BaseService
 //                        'goods_stock_id' => $datum['goods_stock_id'],
 //                        'number' => $datum['number']
 //                    ];
-                    $this->model->goodsStock()->attach($datum['goods_stock_id'],['number'=>$datum['number']]);
+                    $order->goodsStock()->attach($datum['goods_stock_id'],['number'=>$datum['number']]);
                     //计算金额
                     $pay['amount'] += intval($datum['price']*100*$datum['number']);
                     array_push($cart_ids, $datum['cart_id']);
@@ -239,7 +239,7 @@ class OrderService extends BaseService
 //                    'goods_stock_id' => $data['data']['goods_stock_id'],
 //                    'number' => $data['data']['number']
 //                ];
-                $this->model->goodsStock()->attach($data['data']['goods_stock_id'],['number'=>$data['data']['number']]);
+                $order->goodsStock()->attach($data['data']['goods_stock_id'],['number'=>$data['data']['number']]);
                 //修改库存
                 $this->model->goodsStock()->where('id', $data['data']['goods_stock_id'])
                     ->setDec('stock', $data['data']['number']);
