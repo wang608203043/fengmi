@@ -26,7 +26,7 @@ class GoodsComment extends BaseModel
     protected $autoWriteTimestamp = 'datetime';
 
     public function user(){
-        return $this->belongsTo('Auth','auth_id','id')->field('id,nick_name,img_url');
+        return $this->belongsTo('Auth','auth_id','id');
     }
 
     /**

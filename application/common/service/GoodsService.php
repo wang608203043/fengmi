@@ -181,7 +181,7 @@ class GoodsService extends BaseService
     public function getDetailAndComment($id,$openid)
     {
         $goods = $this->model->findById($id);
-        $comments = $goods->goodsComment()->where(['deleted'=>BaseModel::$DELETED_FALSE,'goods_id'=>$goods->id])
+        $comments = $this->model->goodsComment()->where(['deleted'=>BaseModel::$DELETED_FALSE,'goods_id'=>$goods->id])
             ->order('create_time desc')->limit(10)->select();
         $list = [];
         $goods['collected'] = 0;
