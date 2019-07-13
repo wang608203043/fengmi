@@ -119,8 +119,7 @@ class AuthService extends BaseService
      */
     public function getAddressList($auth_id)
     {
-        $auth = $this->model->findById($auth_id);
-        $addresses = $auth->address()->where(['deleted'=>BaseModel::$DELETED_FALSE])->select();
+        $addresses = $this->model->address()->where(['deleted'=>BaseModel::$DELETED_FALSE,'auth_id'=>$auth_id])->select();
         $list = [];
         $district = new District();
         foreach ($addresses as $address) {
