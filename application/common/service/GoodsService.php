@@ -191,6 +191,7 @@ class GoodsService extends BaseService
             }
         }
         foreach ($comments as $comment) {
+            halt($comment);
             $list[] = [
                 'nick_name'=>$comment->user->nick_name,
                 'img_url'=>$comment->user->img_url,
