@@ -215,7 +215,7 @@ class OrderService extends BaseService
             ];
             $order->address()->save($order_address_data);
             //创建订单商品记录
-            $order_goods_data = [];
+            //$order_goods_data = [];
             halt($data['data']);
             if ($data['type'] == 'cart'){
                 $cart_ids = [];
