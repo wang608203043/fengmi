@@ -18,6 +18,7 @@ use app\common\model\District;
 use app\common\model\GoodsComment;
 use app\common\model\GoodsStock;
 use app\common\model\Order;
+use app\common\model\OrderGoods;
 use app\common\model\Receive;
 use app\common\model\UserAddress;
 use think\Cache;
@@ -215,8 +216,7 @@ class OrderService extends BaseService
             ];
             $order->address()->save($order_address_data);
             //创建订单商品记录
-            //$order_goods_data = [];
-            Log::write(json_encode($data['data']),'log',true);
+            $order_goods_data = [];
             if ($data['type'] == 'cart'){
                 $cart_ids = [];
                 $cartModel = new Cart();
@@ -224,11 +224,10 @@ class OrderService extends BaseService
                     //修改库存
                     $this->model->goodsStock()->where('id', $datum['goods_stock_id'])
                         ->setDec('stock', $datum['number']);
-//                    $order_goods_data[] = [
-//                        'goods_stock_id' => $datum['goods_stock_id'],
-//                        'number' => $datum['number']
-//                    ];
-                    $order->goodsStock()->attach($datum['goods_stock_id'],['number'=>$datum['number']]);
+                    $order_goods_data[] = [
+                        'goods_stock_id' => $datum['goods_stock_id'],
+                        'number' => $datum['number']
+                    ];
                     //计算金额
                     $pay['amount'] += intval($datum['price']*100*$datum['number']);
                     array_push($cart_ids, $datum['cart_id']);
@@ -236,17 +235,16 @@ class OrderService extends BaseService
                 //删除购物车
                 $cartModel->whereIn('id',$cart_ids)->delete();
             }else{
-//                $order_goods_data[] = [
-//                    'goods_stock_id' => $data['data']['goods_stock_id'],
-//                    'number' => $data['data']['number']
-//                ];
-                $order->goodsStock()->attach($data['data']['goods_stock_id'],['number'=>$data['data']['number']]);
+                $order_goods_data[] = [
+                    'goods_stock_id' => $data['data']['goods_stock_id'],
+                    'number' => $data['data']['number']
+                ];
                 //修改库存
                 $this->model->goodsStock()->where('id', $data['data']['goods_stock_id'])
                     ->setDec('stock', $data['data']['number']);
                 $pay['amount'] = intval($data['data']['price']*100*$data['data']['number']);
             }
-            //$this->model->goodsStock()->saveAll($order_goods_data);
+            (new OrderGoods())->saveAll($order_goods_data);
             //使用优惠券
             if ($userCoupon){
                 if ($userCoupon->coupon->condition){
