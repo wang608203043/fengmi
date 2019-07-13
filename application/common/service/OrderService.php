@@ -225,6 +225,7 @@ class OrderService extends BaseService
                     $this->model->goodsStock()->where('id', $datum['goods_stock_id'])
                         ->setDec('stock', $datum['number']);
                     $order_goods_data[] = [
+                        'order_id' => $order->id,
                         'goods_stock_id' => $datum['goods_stock_id'],
                         'number' => $datum['number']
                     ];
@@ -236,6 +237,7 @@ class OrderService extends BaseService
                 $cartModel->whereIn('id',$cart_ids)->delete();
             }else{
                 $order_goods_data[] = [
+                    'order_id' => $order->id,
                     'goods_stock_id' => $data['data']['goods_stock_id'],
                     'number' => $data['data']['number']
                 ];
