@@ -31,6 +31,8 @@
 				<td><img src="{$v.user.img_url}" style="height: 30px;border-radius: 50%"></td>
 				<td>{$v.user.nick_name}</td>
 				<td>{$v.coupon.title}</td>
+				<td>{$v.create_time}</td>
+				<td>{$v.used ? '已使用':'未使用'}</td>
 				<td class="td-manage">{if $v.used ==1}<a title="删除" href="javascript:;" onclick="dels(this,'{:url(\'del\')}','{$v.id}')" class="ml-15" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>{/if}</td>
 			</tr>
 		{/volist}

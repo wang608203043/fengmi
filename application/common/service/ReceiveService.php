@@ -10,14 +10,14 @@
 namespace app\common\service;
 
 
-use app\common\model\Integral;
+use app\common\model\Receive;
 
 class ReceiveService extends BaseService
 {
     protected $model;
     public function __construct()
     {
-        $this->model = new Integral();
+        $this->model = new Receive();
     }
 
     /**
