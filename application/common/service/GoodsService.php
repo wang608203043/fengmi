@@ -213,8 +213,8 @@ class GoodsService extends BaseService
      */
     public function moreComment($goods_id, $page, $listRow)
     {
-        $goods = $this->model->findById($goods_id);
-        $comments = $goods->goodsComment()->where(['deleted'=>BaseModel::$DELETED_FALSE])->order('create_time desc')->page($page,$listRow)->select();
+        $comments = $this->model->goodsComment()->where(['deleted'=>BaseModel::$DELETED_FALSE,'goods_id'=>$goods_id])
+            ->order('create_time desc')->page($page,$listRow)->select();
         $list = [];
         foreach ($comments as $comment) {
             $list[] = [
