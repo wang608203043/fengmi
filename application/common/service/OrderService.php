@@ -363,7 +363,9 @@ class OrderService extends BaseService
         $statusMap = Order::$statusMap;
         if (in_array($status,$statusMap)){
             $data = [];
-            $orders = (new Order())->where(['auth_id'=>$auth_id,'status'=>$status])->page($page,3)->select();
+            $orders = (new Order())->with('goodsStock')->where(['auth_id'=>$auth_id,'status'=>$status])
+                ->page($page,3)->select();
+            halt($orders);
             foreach ($orders as $order) {
                 $order_goods = $order->goodsStock;
                 $goods_list = [];
