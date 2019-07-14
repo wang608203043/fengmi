@@ -56,9 +56,11 @@
 				<td class="td-status">
 					<span class="label {$v.status==1?'label-success':'label-defaunt'} radius">
 						{switch name="$v.status"}
-							{case value="0"}待发货{/case}
-							{case value="1"}已发货{/case}
-							{case value="2"}已收货{/case}
+							{case value="0"}待付款{/case}
+							{case value="1"}待发货{/case}
+							{case value="2"}已发货{/case}
+							{case value="3"}已收货{/case}
+							{case value="4"}已收货{/case}
 						{/switch}
 					</span>
 				</td>
