@@ -270,15 +270,4 @@ class GoodsService extends BaseService
         return $list;
     }
 
-    /**
-     * @param $data
-     * @return $this|false|int
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
-     */
-    public function comment($data)
-    {
-        return (new GoodsComment())->saveOrUpdate(null,$data);
-    }
 }

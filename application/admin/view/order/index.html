@@ -12,9 +12,10 @@
 	</form>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
 		<div class="btn-group">
-					<span class="btn {$status == 0?'btn-primary c-white':'btn-default'} radius"> <a href="{:url('index',['status'=>0])}">待发货</a> </span>
-					<span class="btn {$status == 1?'btn-primary c-white':'btn-default'} radius"><a href="{:url('index',['status'=>1])}">已发货</a></span>
-					<span class="btn {$status == 2?'btn-primary c-white':'btn-default'} radius"><a href="{:url('index',['status'=>2])}">已收货</a></span>
+			<span class="btn {$status == 0?'btn-primary c-white':'btn-default'} radius"> <a href="{:url('index',['status'=>0])}">待付款</a> </span>
+					<span class="btn {$status == 0?'btn-primary c-white':'btn-default'} radius"> <a href="{:url('index',['status'=>1])}">待发货</a> </span>
+					<span class="btn {$status == 1?'btn-primary c-white':'btn-default'} radius"><a href="{:url('index',['status'=>2])}">已发货</a></span>
+					<span class="btn {$status == 2?'btn-primary c-white':'btn-default'} radius"><a href="{:url('index',['status'=>34])}">已收货</a></span>
 		</div>
 	</span> <span class="r">共有数据：<strong>{$list|count}</strong> 条</span> </div>
 	<table class="table table-border table-bordered table-bg">
@@ -43,7 +44,7 @@
 				<th>{$v.serial}</th>
 				<td>{$v.address.contact_name}</td>
 				<td>{$v.address.contact_phone}</td>
-				<td>{$v.amount}</td>
+				<td><input type="number" value="{$v.amount}" {if $v.status!==0}readonly{/if} onblur="changeAmount('{$v.id}',this)"></td>
 				<td>{$v.create_time}</td>
 				<td id="table_track">{$v.track_no}</td>
 				<td class="td-status">
@@ -69,6 +70,11 @@
 <div id="modify" style="display: none;text-align: center;margin-top: 10%;">
 	<input type="text" class="input-text" style="width: 300px" value="" placeholder="请填写快递运单号" id="track_no" name="track_no">
 	<br>
+	<select name="shipper_code" style="width: 300px" id="shipper_code" class="select">
+		<option value="">百世汇通</option>
+		<option value="">中通快递</option>
+	</select>
+	<br>
 	<input class="btn btn-primary radius" style="margin-top: 20px" type="button" onclick="track_commit()" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
 </div>
 <!--_footer 作为公共模版分离出去-->
@@ -92,13 +98,27 @@
 			content: $('#modify')
 		});
     }
+    function changeAmount(order_id,obj) {
+        $.post("{:url('changeAmount')}",{order_id:order_id,amount: $(obj).val()},function (res) {
+            if (res.code === 10000){
+                layer.close(index);
+                layer.msg('操作成功!',{icon:1,time:1000});
+                setTimeout(function () {
+                    location.reload();
+                },1000)
+            }else {
+                layer.msg(res.message,{icon:2,time:1000});
+            }
+        });
+    }
     function track_commit() {
         var track_no = $('#track_no').val();
+        var shipper_code = $('#shipper_code').val();
         if (!track_no){
             layer.msg('请填写运单号',{icon:2,time:1000});
 			return false;
 		}else {
-            $.post("{:url('send')}",{order_id:order_id,track_no:track_no},function (res) {
+            $.post("{:url('send')}",{order_id:order_id,track_no:track_no,shipper_code:shipper_code},function (res) {
                 if (res.code === 10000){
                     layer.close(index);
                     layer.msg('操作成功!',{icon:1,time:1000});

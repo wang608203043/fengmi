@@ -36,6 +36,9 @@ class Order extends BaseController
         if ($status !== null){
             $where['status'] = $status;
         }
+        if ($status == 34){
+            $where['status'] = ['in',[3,4]];
+        }
         $list = (new OrderService())->baseList($where,['create_time'=>'desc']);
         $this->assign('list', $list);
         $this->assign('status', $status);
@@ -52,8 +55,18 @@ class Order extends BaseController
     {
         $id = input('order_id');
         $data['track_no'] = input('track_no');
-        $data['status'] = 1;
+        $data['shipper_code'] = input('shipper_code');
+        $data['status'] = 2;
         $res = $this->service->baseSave($id, $data);
+        return $res ? CodeResponse::format($res) : CodeResponse::fail();
+    }
+
+    public function changeAmount(){
+        $order_id = input('order_id');
+        $amount = input('amount');
+        $order = $this->service->getById($order_id);
+        $order->amount = $amount;
+        $res = $order->save();
         return $res ? CodeResponse::format($res) : CodeResponse::fail();
     }
 
