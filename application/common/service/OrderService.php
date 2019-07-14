@@ -263,7 +263,7 @@ class OrderService extends BaseService
                 $userCoupon->save();
             }
             //更新订单金额
-            $order->amount = $pay['amount'];
+            $order->amount = $pay['amount']/100;
             $order->save();
             $this->model->commit();
             //获取支付参数
@@ -412,6 +412,42 @@ class OrderService extends BaseService
     public function comment($data)
     {
         return (new GoodsComment())->saveOrUpdate(null,$data);
+    }
+
+    /**
+     * @param $order_id
+     * @return string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function paying($order_id)
+    {
+        $order = (new Order())->findById($order_id);
+        $order->amount = $order->amount*100;
+        $openid = $order->user->openid;
+        $jsParameter = $this->getPayParams($order,$openid);
+        return $jsParameter;
+    }
+
+    /**
+     * @param $order_id
+     * @return false|int
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function cancel($order_id)
+    {
+        $order = (new Order())->findById($order_id);
+        //回复库存
+        $goodsStocks = $order->goodsStock;
+        foreach ($goodsStocks as $goodsStock) {
+            $goodsStock->stock += $goodsStock->pivot['number'];
+            $goodsStock->save();
+        }
+        $order->status = Order::ORDER_CANCEL;
+        return $order->save();
     }
 
 }

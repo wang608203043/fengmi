@@ -86,6 +86,32 @@ class Order extends BaseController
     }
 
     /**
+     * 立即支付
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function pay(){
+        $order_id = input('order_id');
+        $result = $this->service->paying($order_id);
+        return CodeResponse::format($result);
+    }
+
+    /**
+     * 取消订单
+     * @return \think\response\Json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function cancel(){
+        $order_id = input('order_id');
+        $result = $this->service->cancel($order_id);
+        return CodeResponse::format($result);
+    }
+
+    /**
      * @return string
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException

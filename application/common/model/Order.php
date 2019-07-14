@@ -36,13 +36,15 @@ class Order extends BaseModel
     const ORDER_RECEIVE = 2; //待收货
     const ORDER_COMMENT = 3; //待评价
     const ORDER_DONE = 4; //已完成
+    const ORDER_CANCEL = 5; //取消订单
 
     public static $statusMap = [
         self::ORDER_PENDING_PAY,
         self::ORDER_PENDING_SEND,
         self::ORDER_RECEIVE,
         self::ORDER_COMMENT,
-        self::ORDER_DONE
+        self::ORDER_DONE,
+        self::ORDER_CANCEL
     ];
 
     public static $statusTextMap = [
@@ -50,7 +52,8 @@ class Order extends BaseModel
         self::ORDER_PENDING_SEND => '待发货',
         self::ORDER_RECEIVE => '待收货',
         self::ORDER_COMMENT => '待评价',
-        self::ORDER_DONE => '已完成'
+        self::ORDER_DONE => '已完成',
+        self::ORDER_CANCEL => '已取消',
     ];
 
     public function user(){
