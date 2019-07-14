@@ -411,7 +411,22 @@ class OrderService extends BaseService
      */
     public function comment($data)
     {
-        return (new GoodsComment())->saveOrUpdate(null,$data);
+        $order = $this->model->findById($data['order_id']);
+        $this->model->startTrans();
+        try {
+            $order->status = Order::ORDER_DONE;
+            $order->save();
+            (new GoodsComment())->saveOrUpdate(null,[
+                'goods_id' => $data['goods_id'],
+                'auth_id' => $data['auth_id'],
+                'content' => $data['content'],
+            ]);
+            $this->model->commit();
+        } catch (\Exception $exception) {
+            $this->model->rollback();
+            CodeResponse::error(CodeResponse::CODE_SYSTEM_ERROR);
+        }
+        return true;
     }
 
     /**

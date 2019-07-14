@@ -158,6 +158,7 @@ class Order extends BaseController
      */
     public function comment(){
         $data['goods_id'] = input('goods_id');
+        $data['order_id'] = input('order_id');
         $data['content'] = input('content');
         $data['auth_id'] = $this->getUid();
         $res = (new OrderService())->comment($data);
