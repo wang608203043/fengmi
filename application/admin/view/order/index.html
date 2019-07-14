@@ -13,7 +13,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
 		<div class="btn-group">
 			<span class="btn {$status == 0?'btn-primary c-white':'btn-default'} radius"> <a href="{:url('index',['status'=>0])}">待付款</a> </span>
-					<span class="btn {$status == 0?'btn-primary c-white':'btn-default'} radius"> <a href="{:url('index',['status'=>1])}">待发货</a> </span>
+					<span class="btn {$status == 1?'btn-primary c-white':'btn-default'} radius"> <a href="{:url('index',['status'=>1])}">待发货</a> </span>
 					<span class="btn {$status == 1?'btn-primary c-white':'btn-default'} radius"><a href="{:url('index',['status'=>2])}">已发货</a></span>
 					<span class="btn {$status == 2?'btn-primary c-white':'btn-default'} radius"><a href="{:url('index',['status'=>34])}">已收货</a></span>
 		</div>
@@ -44,7 +44,13 @@
 				<th>{$v.serial}</th>
 				<td>{$v.address.contact_name}</td>
 				<td>{$v.address.contact_phone}</td>
-				<td><input type="number" value="{$v.amount}" {if $v.status!==0}readonly{/if} onblur="changeAmount('{$v.id}',this)"></td>
+				<td>
+					{if $v.status ==0}
+					<input type="number" value="{$v.amount}"  onblur="changeAmount('{$v.id}',this)">
+					{else/}
+					{$v.amount}
+					{/if}
+				</td>
 				<td>{$v.create_time}</td>
 				<td id="table_track">{$v.track_no}</td>
 				<td class="td-status">
@@ -70,7 +76,7 @@
 <div id="modify" style="display: none;text-align: center;margin-top: 10%;">
 	<input type="text" class="input-text" style="width: 300px" value="" placeholder="请填写快递运单号" id="track_no" name="track_no">
 	<br>
-	<select name="shipper_code" style="width: 300px" id="shipper_code" class="select">
+	<select name="shipper_code" style="width: 300px;margin-top: 5px" id="shipper_code" class="select">
 		<option value="">百世汇通</option>
 		<option value="">中通快递</option>
 	</select>
