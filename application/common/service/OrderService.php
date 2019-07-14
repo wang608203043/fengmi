@@ -365,7 +365,6 @@ class OrderService extends BaseService
             $data = [];
             $orders = (new Order())->with('goodsStock')->where(['auth_id'=>$auth_id,'status'=>$status])
                 ->page($page,10)->select();
-            halt(json_decode(json_encode($orders)));
             foreach ($orders as $order) {
                 $order_goods = $order->goodsStock;
                 $goods_list = [];
