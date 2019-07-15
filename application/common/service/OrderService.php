@@ -289,7 +289,7 @@ class OrderService extends BaseService
             'spbill_create_ip' => \request()->ip(),
             'total_fee' => $data['amount'],
             'openid' => $openid,
-            'notify_url' => 'https://fengmi.yangshopping.com/api/order/notify' //异步通知地址
+            'notify_url' => 'https://mini.daodaoshop.com/api/order/notify' //异步通知地址
         );
         $pay = new Wxpay(config('wx'));
         $res = $pay->create_order($pay_param);
